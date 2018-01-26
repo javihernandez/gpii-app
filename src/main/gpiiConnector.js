@@ -29,7 +29,7 @@ fluid.defaults("gpii.app.gpiiConnector", {
 
     // Configuration regarding the socket connection
     config: {
-        gpiiWSUrl: "ws://localhost:8081/pcpChannel"
+        gpiiWSUrl: "ws://127.0.0.1:8081/pcpChannel"
     },
 
     members: {
