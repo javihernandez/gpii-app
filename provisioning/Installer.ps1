@@ -61,6 +61,10 @@ Invoke-Command $npm "install electron-packager -g" $projectDir
 # Npm install the application, this needs to be done for packaging.
 Invoke-Command $npm "install" $projectDir
 
+# GPII-2895: Create a txt file that includes the GPII version
+$txtVersionGenerator = Join-Path $projectDir "createVersionFile.js"
+Invoke-Command $node $txtVersionGenerator $projectDir
+
 # Copy all the relevant content of projectDir into preStaging
 # TODO: Make all these robocopies a bit more sexy
 Invoke-Command "robocopy" "..\node_modules $(Join-Path $preStagingDir "node_modules") /job:gpii-app.rcj *.*" $provisioningDir -errorLevel 3
@@ -72,6 +76,9 @@ Invoke-Command "robocopy" "$projectDir $preStagingDir main.js" $provisioningDir 
 Invoke-Command "robocopy" "$projectDir $preStagingDir package.json" $provisioningDir -errorLevel 3
 Invoke-Command "robocopy" "$projectDir $preStagingDir package-lock.json" $provisioningDir -errorLevel 3
 Invoke-Command "robocopy" "$projectDir $preStagingDir README.md" $provisioningDir -errorLevel 3
+# GPII-2895: Copy version.txt into staging folder
+$stagingDir = Join-Path $installerDir "staging"
+Invoke-Command "robocopy" "$projectDir $stagingDir version.txt" $provisioningDir -errorLevel 3
 
 $packagerMetadata = "--app-copyright=`"Raising the Floor - International Association`" --win32metadata.CompanyName=`"Raising the Floor - International Association`" --win32metadata.FileDescription=`"GPII-App`" --win32metadata.OriginalFilename=`"gpii.exe`" --win32metadata.ProductName=`"GPII-App`" --win32metadata.InternalName=`"GPII-App`""
 
