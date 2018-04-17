@@ -25,7 +25,7 @@
     "electron": "1.4.1",
     "electron-edge": "6.5.4",
     "infusion": "3.0.0-dev.20170830T182157Z.392b2f8",
-    "gpii-windows": "git://github.com/javihernandez/windows.git#demo-ATIA",
+    "gpii-windows": "git://github.com/javihernandez/windows.git#8f907b17298923dbf0d89c39f83e7ea50f03be6e",
     "node-jqunit": "1.1.7",
     "request": "2.69.0",
     "winstrap": "0.5.11"
