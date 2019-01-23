@@ -26,7 +26,15 @@
     fluid.defaults("gpii.qss.keyInButtonPresenter", {
         gradeNames: ["gpii.qss.buttonPresenter"],
         attrs: {
-            "aria-label": "Morphic settings panel"
+            "aria-label": "Settings Panel"
+        },
+        listeners: {
+            "onArrowUpPressed.activate": {
+                func: "{that}.onActivationKeyPressed",
+                args: [
+                    {key: "ArrowUp"}
+                ]
+            }
         },
         invokers: {
             activate: {
@@ -107,7 +115,7 @@
                 method: "toggleClass",
                 args: [
                     "{that}.options.styles.dimmed",
-                    "@exapnd:fluid.negate({change}.value)" // dim if not keyed in
+                    "@expand:fluid.negate({change}.value)" // dim if not keyed in
                 ]
             }
         },

@@ -18,7 +18,6 @@ var fluid = require("infusion");
 
 var gpii = fluid.registerNamespace("gpii");
 
-require("./dialogs/basic/scaledDialog.js");
 require("./dialogs/quickSetStrip/qssDialog.js");
 require("./dialogs/quickSetStrip/qssTooltipDialog.js");
 require("./dialogs/quickSetStrip/qssWidgetDialog.js");
@@ -51,7 +50,8 @@ fluid.defaults("gpii.app.qssWrapper", {
 
         // paths might be needed for some reason
         settingPaths: {
-            language: "http://registry\\.gpii\\.net/common/language"
+            language: "http://registry\\.gpii\\.net/common/language",
+            psp: "psp"
         },
 
         settingMessagesPrefix: "gpii_app_qss_settings",
@@ -60,7 +60,9 @@ fluid.defaults("gpii.app.qssWrapper", {
             currentLanguageGroup: "%native",
             genericLanguage: "%native · %local"
         },
-        defaultLanguage: "en-US"
+        // This language should always be positioned on top of the
+        // language setting choices
+        systemDefaultLanguage: "en-US"
     },
 
     settingsFixturePath: "%gpii-app/testData/qss/settings.json",
@@ -87,8 +89,6 @@ fluid.defaults("gpii.app.qssWrapper", {
         }
     },
 
-    scaleFactor: "{that}.options.siteConfig.scaleFactor",
-
     model: {
         messages: {
             restartWarningNotification: null
@@ -97,6 +97,9 @@ fluid.defaults("gpii.app.qssWrapper", {
         isKeyedIn: false,
         keyedInUserToken: null,
         settings: "{that}.options.loadedSettings",
+
+
+        scaleFactor: "{that}.options.siteConfig.scaleFactor",
 
         // user preferences
         closeQssOnBlur: false,
@@ -140,7 +143,9 @@ fluid.defaults("gpii.app.qssWrapper", {
 
     modelListeners: {
         "keyedInUserToken": {
-            func: "{qssNotification}.hide"
+            this: "{qssNotification}",
+            method: "hide",
+            excludeSource: "init"
         },
 
         "{messageBundles}.model.locale": {
@@ -239,7 +244,9 @@ fluid.defaults("gpii.app.qssWrapper", {
         qssWidget: {
             type: "gpii.app.qssWidget",
             options: {
-                scaleFactor: "{qssWrapper}.options.scaleFactor",
+                model: {
+                    scaleFactor: "{qssWrapper}.model.scaleFactor"
+                },
                 listeners: {
                     onQssWidgetSettingAltered: {
                         func: "{qssWrapper}.alterSetting",
@@ -269,9 +276,9 @@ fluid.defaults("gpii.app.qssWrapper", {
         qssTooltip: {
             type: "gpii.app.qssTooltipDialog",
             options: {
-                scaleFactor: "{qssWrapper}.options.scaleFactor",
                 model: {
-                    isKeyedIn: "{qssWrapper}.model.isKeyedIn"
+                    isKeyedIn: "{qssWrapper}.model.isKeyedIn",
+                    scaleFactor: "{qssWrapper}.model.scaleFactor"
                 },
                 listeners: {
                     "{gpii.app.qss}.channelListener.events.onQssButtonMouseEnter": [{
@@ -305,13 +312,17 @@ fluid.defaults("gpii.app.qssWrapper", {
         qssNotification: {
             type: "gpii.app.qssNotification",
             options: {
-                scaleFactor: "{qssWrapper}.options.scaleFactor"
+                model: {
+                    scaleFactor: "{qssWrapper}.model.scaleFactor"
+                }
             }
         },
         qssMorePanel: {
             type: "gpii.app.qssMorePanel",
             options: {
-                scaleFactor: "{qssWrapper}.options.scaleFactor"
+                model: {
+                    scaleFactor: "{qssWrapper}.model.scaleFactor"
+                }
             }
         }
     }
@@ -519,11 +530,11 @@ gpii.app.qssWrapper.orderLanguagesMetadata = function (settingOptions, languages
     languagesMetadata.sort(function (a, b) { return a.english > b.english; });
 
     // Move the default language at the top
-    var defaultLanguageIdx = languagesMetadata.findIndex(function (lang) {
-        return lang.code.toLowerCase() === settingOptions.defaultLanguage.toLowerCase();
+    var systemDefaultLanguageIdx = languagesMetadata.findIndex(function (lang) {
+        return lang.code.toLowerCase() === settingOptions.systemDefaultLanguage.toLowerCase();
     });
-    if ( defaultLanguageIdx > -1 ) {
-        var language = languagesMetadata.splice(defaultLanguageIdx, 1);
+    if ( systemDefaultLanguageIdx > -1 ) {
+        var language = languagesMetadata.splice(systemDefaultLanguageIdx, 1);
         languagesMetadata.unshift(language[0]);
     }
 
@@ -591,6 +602,11 @@ gpii.app.qssWrapper.loadSettings = function (assetsManager, installedLanguages, 
         if (imageAsset) {
             loadedSetting.schema.image = assetsManager.resolveAssetPath(imageAsset);
         }
+
+        var helpImageAsset = loadedSetting.schema.helpImage;
+        if (helpImageAsset) {
+            loadedSetting.schema.helpImage = assetsManager.resolveAssetPath(helpImageAsset);
+        }
     });
 
     // more dynamic loading
@@ -624,7 +640,9 @@ gpii.app.qssWrapper.loadSettings = function (assetsManager, installedLanguages, 
                          */
                         type: "disabled",
                         title: ""
-                    }
+                    },
+                    // Preserve the styling of the corresponding QSS button
+                    buttonTypes: loadedSettings[settingToHideIdx].buttonTypes
                 };
             }
         });
@@ -682,14 +700,14 @@ gpii.app.qssWrapper.alterSetting = function (that, updatedSetting, source) {
  * button.
  */
 gpii.app.qssWrapper.getButtonPosition = function (qss, buttonElemMetrics) {
-    var scaleFactor = qss.options.scaleFactor,
+    var scaleFactor = qss.model.scaleFactor,
         offsetLeft = scaleFactor * buttonElemMetrics.offsetLeft,
-        buttonWidth = scaleFactor * buttonElemMetrics.width,
-        buttonHeight = scaleFactor * buttonElemMetrics.height;
+        offsetTop = scaleFactor * buttonElemMetrics.offsetTop,
+        buttonWidth = scaleFactor * buttonElemMetrics.width;
 
     return {
-        x: qss.width - offsetLeft - buttonWidth / 2,
-        y: buttonHeight
+        x: qss.model.width - offsetLeft - buttonWidth / 2,
+        y: qss.model.height - offsetTop
     };
 };
 
@@ -708,6 +726,8 @@ gpii.app.qssWrapper.applySettingTranslation = function (qssSettingMessages, sett
     if (message) {
         translatedSetting.tooltip = message.tooltip;
         translatedSetting.tip = message.tip;
+        translatedSetting.extendedTip = message.extendedTip;
+
         if (fluid.isValue(message.footerTip)) {
             translatedSetting.widget = translatedSetting.widget || {};
             translatedSetting.widget.footerTip = message.footerTip;
@@ -803,15 +823,14 @@ fluid.defaults("gpii.app.qssInWrapper", {
     gradeNames: "gpii.app.qss",
     model: {
         isKeyedIn: "{qssWrapper}.model.isKeyedIn",
-
-        closeQssOnBlur: "{qssWrapper}.model.closeQssOnBlur"
+        closeQssOnBlur: "{qssWrapper}.model.closeQssOnBlur",
+        scaleFactor: "{qssWrapper}.model.scaleFactor"
     },
     config: {
         params: {
             settings: "{qssWrapper}.model.settings"
         }
     },
-    scaleFactor: "{qssWrapper}.options.scaleFactor",
     pspButtonPath: "psp",
     events: {
         onQssPspClose: "{qssWrapper}.events.onQssPspClose",
