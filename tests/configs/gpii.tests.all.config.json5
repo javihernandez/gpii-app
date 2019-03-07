@@ -43,6 +43,7 @@
         }
     },
     "mergeConfigs": [
-        "%gpii-universal/gpii/configs/gpii.config.untrusted.development.manualTesting.json5"
+        "%gpii-universal/tests/platform/windows/configs/gpii.tests.acceptance.windows.builtIn.config.json",
+        "%gpii-universal/gpii/configs/shared/gpii.config.couch.development.base.json5"
     ]
 }
