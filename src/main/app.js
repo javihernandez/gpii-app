@@ -103,7 +103,8 @@ fluid.defaults("gpii.app", {
     defaultUserToken: "noUser",
     // prerequisites
     members: {
-        machineId: "@expand:{that}.installID.getMachineID()"
+        machineId: "@expand:{that}.installID.getMachineID()",
+        onPSPReadyForKeyIn: "@expand:fluid.promise()"
     },
     components: {
         configurationHandler: {
@@ -345,6 +346,16 @@ fluid.defaults("gpii.app", {
             }
         }
     },
+    distributeOptions: {
+        relayQssDialogReady: {
+            target: "{that gpii.app.qss}.options.listeners",
+            record: {
+                "onDialogReady.relayToApp": {
+                    func: "{gpii.app}.events.onQSSDialogReady.fire"
+                }
+            }
+        }
+    },
     events: {
         onPSPPrerequisitesReady: {
             events: {
@@ -353,6 +364,13 @@ fluid.defaults("gpii.app", {
                 onPSPChannelConnected: "onPSPChannelConnected"
             }
         },
+        onPSPReadyForKeyIn: {
+            events: {
+                resetAtStartSuccess: "{flowManager}.events.resetAtStartSuccess",
+                onQSSDialogReady: "onQSSDialogReady"
+            }
+        },
+        onQSSDialogReady: null,
         onGPIIReady: null,
 
         onAppReady: null,
@@ -393,9 +411,12 @@ fluid.defaults("gpii.app", {
         },
 
         "onPSPPrerequisitesReady.notifyPSPReady": {
-            this: "{that}.events.onPSPReady",
-            method: "fire",
+            func: "{that}.events.onPSPReady.fire",
             priority: "last"
+        },
+        "onPSPReadyForKeyIn.resolvePromise": {
+            func: "{that}.onPSPReadyForKeyIn.resolve",
+            priority: "after:notifyPSPReady"
         }
 
         // Disabled per: https://github.com/GPII/gpii-app/pull/100#issuecomment-471778768
@@ -407,8 +428,8 @@ fluid.defaults("gpii.app", {
     },
     invokers: {
         updateKeyedInUserToken: {
-            changePath: "keyedInUserToken",
-            value: "{arguments}.0"
+            funcName: "gpii.app.updateKeyedInUserToken",
+            args: ["{that}", "{arguments}.0"]
         },
         updatePreferences: {
             changePath: "preferences",
@@ -437,6 +458,21 @@ fluid.defaults("gpii.app", {
     },
     defaultTheme: "white"
 });
+
+// Indicative fix for GPII-3818
+gpii.app.updateKeyedInUserToken = function (that, userToken) {
+    var updateFunc = function () {
+        fluid.log("Main app firing unbottled user token update to ", userToken);
+        that.applier.change("keyedInUserToken", userToken);
+    };
+    if (that.onPSPReadyForKeyIn.disposition) {
+        fluid.log("Main app received userToken update in live state, firing now");
+        updateFunc();
+    } else {
+        fluid.log("Main app received userToken update before renderer process is ready, deferring for " + userToken);
+        that.onPSPReadyForKeyIn.then(updateFunc);
+    }
+};
 
 /**
  * Changes the keyboard shortcut for opening the GPII app. The previously registered
