@@ -60,7 +60,7 @@
 
         events: {
             onSignInClicked: null,
-            onSignInRequested: null
+            onQssWidgetSignInRequested: null
         },
 
         invokers: {
@@ -74,6 +74,7 @@
         },
 
         listeners: {
+            onQssWidgetSignInRequested: "{channelNotifier}.events.onQssWidgetSignInRequested.fire",
             onSignInClicked: {
                 funcName: "gpii.qssWidget.signIn.validateSignIn",
                 args: [
@@ -156,7 +157,7 @@
             that.updateError(that.model.messages.errorDetails);
         } else {
             that.updateError(null);
-            that.events.onSignInRequested.fire(email, password);
+            that.events.onQssWidgetSignInRequested.fire(email, password);
         }
     };
 

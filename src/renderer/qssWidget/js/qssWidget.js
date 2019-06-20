@@ -77,7 +77,8 @@
             onQssWidgetHeightChanged: null,
             onQssWidgetSettingAltered: null,
             onQssWidgetNotificationRequired: null,
-            onQssWidgetCreated: null
+            onQssWidgetCreated: null,
+            onQssWidgetSignInRequested: null
         },
 
         sounds: {},
@@ -209,7 +210,8 @@
                         onQssWidgetHeightChanged:        "{qssWidget}.events.onQssWidgetHeightChanged",
                         onQssWidgetSettingAltered:       "{qssWidget}.events.onQssWidgetSettingAltered",
                         onQssWidgetNotificationRequired: "{qssWidget}.events.onQssWidgetNotificationRequired",
-                        onQssWidgetCreated:              "{qssWidget}.events.onQssWidgetCreated"
+                        onQssWidgetCreated:              "{qssWidget}.events.onQssWidgetCreated",
+                        onQssWidgetSignInRequested:      "{qssWidget}.events.onQssWidgetSignInRequested"
                     }
                 }
             }
