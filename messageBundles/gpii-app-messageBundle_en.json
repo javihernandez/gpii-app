@@ -73,5 +73,10 @@
     "gpii_qssWidget_stepper_incrementButton": "Larger",
     "gpii_qssWidget_stepper_decrementButton": "Smaller",
     "gpii_qssWidget_stepper_upperBoundError": "This is highest setting",
-    "gpii_qssWidget_stepper_lowerBoundError": "This is lowest setting"
+    "gpii_qssWidget_stepper_lowerBoundError": "This is lowest setting",
+
+    "gpii_qssWidget_signIn_signInButton": "Sign in",
+    "gpii_qssWidget_signIn_emailTextInputLabel": "Email or Account Name",
+    "gpii_qssWidget_signIn_passwordInputLabel": "Morphic Password",
+    "gpii_qssWidget_signIn_errorDetails": "The email or account name and password you type did not work. Please check your typing and try again. You can also <a href=\"#\">reset your password</a>\nAfter 6 tries, you'll have to wait a minute between tries"
 }
