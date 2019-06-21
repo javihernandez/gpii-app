@@ -175,7 +175,7 @@
         if (errorDetails) {
             errorContainer.show();
             // for now this data is pre-filled properly
-            // that.dom.locate("errorDetails").text(errorDetails);
+            // that.dom.locate("errorDetails").html(errorDetails);
         } else {
             errorContainer.hide();
         }
