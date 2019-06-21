@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="css/qssMenuWidget.css">
         <link rel="stylesheet" href="css/qssStepperWidget.css">
         <link rel="stylesheet" href="css/qssToggleWidget.css">
+        <link rel="stylesheet" href="css/qssMySavedSettingsWidget.css">
 
         <script type="text/javascript" src="../../../node_modules/infusion/src/lib/jquery/core/js/jquery.js"></script>
         <script type="text/javascript" src="../../../node_modules/infusion/dist/infusion-all.js"></script>
@@ -111,24 +112,27 @@
             </div>
 
             <!-- the Sign In Widget -->
-            <div class="flc-qssSignInWidget fl-dialog-content fl-scrollable">
+            <div class="flc-qssSignInWidget fl-dialog-content fl-scrollable fl-qssSignInWidget">
                 <div class="flc-qssWidget-tip fl-qssWidget-tip"></div>
                 <div class="flc-qssWidget-learnMoreLink fl-qssWidget-learnMoreLink fl-focusable" role="link" tabindex="0"></div>
                 <div class="fl-sigin-form form-group">
                     <label class="flc-emailTextInput-label"></label>
                     <input type="text" class="flc-emailTextInput form-control fl-focusable" autofocus>
 
-                    <label class="flc-passwordInput-label"></label>
+                    <div class="fl-link-container">
+                        <label class="flc-passwordInput-label"></label>
+                        <div class="flc-passwordInput-link fl-passwordInput-link fl-focusable" role="link" tabindex="0"></div>
+                    </div>
+
                     <input type="password" class="flc-passwordInput form-control fl-focusable">
 
+                    <div class="flc-error fl-error">
+                        <div class="flc-errorDetails fl-errorDetails"></div>
+                    </div>
 
                     <button class="flc-signInBtn btn fl-btn fl-signInBtn fl-focusable">
                         <span class="flc-btnLabel fl-btnLabel"></span>
                     </button>
-
-                </div>
-                <div class="flc-error fl-error">
-                    <div class="flc-errorDetails fl-errorDetails"></div>
                 </div>
             </div>
         </div>

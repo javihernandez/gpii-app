@@ -34,6 +34,7 @@
             messages: {
                 emailTextInputLabel: null,
                 passwordInputLabel: null,
+                passwordInputLink: null,
                 signInButton: null,
                 errorDetails: null
             },
@@ -48,6 +49,7 @@
         selectors: {
             emailTextInputLabel:  ".flc-emailTextInput-label",
             passwordInputLabel:   ".flc-passwordInput-label",
+            passwordInputLink:    ".flc-passwordInput-link",
 
             emailTextInput:       ".flc-emailTextInput",
             passwordInput:        ".flc-passwordInput",
@@ -172,8 +174,8 @@
         var errorContainer = that.dom.locate("error");
         if (errorDetails) {
             errorContainer.show();
-
-            that.dom.locate("errorDetails").text(errorDetails);
+            // for now this data is pre-filled properly
+            // that.dom.locate("errorDetails").text(errorDetails);
         } else {
             errorContainer.hide();
         }

@@ -83,9 +83,9 @@
         "tooltip": "<p>The Quick Folder has commonly requested documents, web pages, and other resources.</p>",
         "title": "Open Quick Folder"
     },
-        "gpii_app_qss_settings_signIn": {
-        "tooltip": "<p>My saved Settings.</p><p>To apply your saved preferences to this computer.</p>",
+    "gpii_app_qss_settings_signIn": {
+        "tooltip": "<p>My Saved Settings.</p><p>To apply your saved preferences to this computer.</p>",
         "title": "My Saved Settings",
-        "tip": "<p>My saved preference settings</p><p>To get your preferences applied to this computer</p><ul><li>Use a Morphic Key or</li><li>Sign Into Morphic below</li></ul>"
+        "tip": "<p>My saved preference settings</p><p>To get your preferences applied to this computer...</p><ul><li>Use a Morphic Key or</li><li>Sign Into Morphic below</li></ul>"
     }
 }
