@@ -55,7 +55,8 @@
             menu: ".flc-qssMenuWidget",
             toggle: ".flc-qssToggleWidget",
             screenCapture: ".flc-qssScreenCaptureWidget",
-            signIn: ".flc-qssSignInWidget"
+            signIn: ".flc-qssSignInWidget",
+            myPreferenceSettings: ".flc-qssMyPreferenceSettingsWidget"
         },
 
         /**
@@ -67,7 +68,8 @@
             "string": "gpii.qssWidget.menu",
             "boolean": "gpii.qssWidget.toggle",
             "screenCapture": "gpii.qssWidget.screenCapture",
-            "signIn": "gpii.qssWidget.signIn"
+            "signIn": "gpii.qssWidget.signIn",
+            "myPreferenceSettings": "gpii.qssWidget.myPreferenceSettings"
         },
 
         events: {

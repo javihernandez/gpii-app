@@ -42,6 +42,7 @@
             "usb-open": "gpii.qss.openUSBButtonPresenter",
             "cloud-folder-open": "gpii.qss.openCloudFolderPresenter",
             "signIn":   "gpii.qss.widgetButtonPresenter",
+            "myPreferenceSettings": "gpii.qss.widgetButtonPresenter",
             "disabled": "gpii.qss.disabledButtonPresenter"
         },
 

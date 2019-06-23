@@ -87,5 +87,10 @@
         "tooltip": "<p>My Saved Settings.</p><p>To apply your saved preferences to this computer.</p>",
         "title": "My Saved Settings",
         "tip": "<p>My saved preference settings</p><p>To get your preferences applied to this computer...</p><ul><li>Use a Morphic Key or</li><li>Sign Into Morphic below</li></ul>"
+    },
+    "gpii_app_qss_settings_myPreferenceSettings": {
+        "tooltip": "<p>My Saved Settings.</p><p>To apply your saved preferences to this computer.</p>",
+        "title": "My Saved Settings",
+        "tip": "<p>My saved preference settings</p><p>TODO</p><p>Did you know you can create othere Preference Sets?</p>"
     }
 }
