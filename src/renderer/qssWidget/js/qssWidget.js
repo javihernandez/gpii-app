@@ -44,7 +44,7 @@
      * showing the "Learn more" links, etc.
      */
     fluid.defaults("gpii.psp.qssWidget", {
-        gradeNames: ["fluid.viewComponent"],
+        gradeNames: ["fluid.viewComponent", "gpii.psp.metrics.qssWidget"],
 
         model: {
             setting: {}
@@ -93,9 +93,7 @@
             onQssUnmountUsbRequested: null,
 
             // Volume & Mute related event
-            onQssGetVolumeRequested: null,
-
-            onLearnMoreClicked: null
+            onQssGetVolumeRequested: null
         },
 
         sounds: {},
@@ -160,9 +158,6 @@
                                     messages: {
                                         learnMore: "{qssWidget}.model.messages.learnMore"
                                     }
-                                },
-                                listeners: {
-                                    "onClicked.learnMore": "{qssWidget}.events.onLearnMoreClicked"
                                 }
                             }
                         }
@@ -237,7 +232,8 @@
                         onQssUnmountUsbRequested:        "{qssWidget}.events.onQssUnmountUsbRequested",
                         // Volume button
                         onQssGetVolumeRequested:         "{qssWidget}.events.onQssGetVolumeRequested",
-                        onLearnMoreClicked:              "{qssWidget}.events.onLearnMoreClicked"
+                        onMetric:                        "{qssWidget}.events.onMetric",
+                        onMetricState:                   "{qssWidget}.events.onMetricState"
                     }
                 }
             }
