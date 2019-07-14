@@ -40,7 +40,7 @@ fluid.defaults("gpii.app.qssWidget", {
     extraVerticalOffset: 7,
 
     // A list of QSS setting types for which this widget is applicable.
-    supportedSettings: ["string", "number", "boolean", "screenCapture", "openUSB", "volume", "office", "translateTools"],
+    supportedSettings: ["string", "number", "boolean", "screenCapture", "openUSB", "volume", "office", "translateTools", "mySavedSettings"],
 
     model: {
         setting: {}
@@ -60,7 +60,8 @@ fluid.defaults("gpii.app.qssWidget", {
                         args: ["{that}.options.sounds.boundReachedErrorSound"]
                     }
                 }
-            }
+            },
+            lastEnvironmentalLoginGpiiKey: "{that}.model.lastEnvironmentalLoginGpiiKey"
         },
         attrs: {
             width: 170,
@@ -113,8 +114,10 @@ fluid.defaults("gpii.app.qssWidget", {
                     onQssGetVolumeRequested: null,
 
                     onMetric: null,
-                    onMetricState: null
+                    onMetricState: null,
 
+                    onQssReApplyPreferencesRequired: null,
+                    onQssGetEnvironmentalLoginKeyRequested: null
                 },
                 listeners: {
                     onQssWidgetClosed: [{
@@ -157,6 +160,16 @@ fluid.defaults("gpii.app.qssWidget", {
                     },
                     onQssGetVolumeRequested: {
                         funcName: "gpii.app.getVolumeValue",
+                        args: [
+                            "{qssWidget}.dialog",
+                            "{arguments}.0" // messageChannel
+                        ]
+                    },
+                    onQssReApplyPreferencesRequired: {
+                        funcName: "{app}.reApplyPreferences"
+                    },
+                    onQssGetEnvironmentalLoginKeyRequested: {
+                        funcName: "{app}.getEnvironmentalLoginKey",
                         args: [
                             "{qssWidget}.dialog",
                             "{arguments}.0" // messageChannel

@@ -204,6 +204,7 @@ fluid.defaults("gpii.app", {
             options: {
                 appTextZoomPath: "appTextZoom",
                 model: {
+                    lastEnvironmentalLoginGpiiKey : "{lifecycleManager}.model.lastEnvironmentalLoginGpiiKey",
                     isKeyedIn: "{app}.model.isKeyedIn",
                     keyedInUserToken: "{app}.model.keyedInUserToken",
 
@@ -451,6 +452,14 @@ fluid.defaults("gpii.app", {
             funcName: "gpii.app.resetAllToStandard",
             args: ["{that}", "{psp}", "{qssWrapper}.qss"]
         },
+        // Re-apply the last environmental login
+        reApplyPreferences: {
+            func: "{lifecycleManager}.replayEnvironmentalLogin"
+        },
+        getEnvironmentalLoginKey: {
+            funcName: "gpii.app.getEnvironmentalLoginKey",
+            args: ["{lifecycleManager}.model.lastEnvironmentalLoginGpiiKey", "{arguments}.0", "{arguments}.1"]
+        },
         exit: {
             funcName: "gpii.app.exit",
             args: "{that}"
@@ -472,6 +481,16 @@ gpii.app.updateKeyedInUserToken = function (that, userToken) {
         fluid.log("Main app received userToken update before renderer process is ready, deferring for " + userToken);
         that.onPSPReadyForKeyIn.then(updateFunc);
     }
+};
+
+/**
+ * Get the Gpii key name of the last environmental login.
+ * @param {Object} browserWindow - An Electron `BrowserWindow` object.
+ * @param {String} messageChannel - The channel to which the message should be sent.
+ * @param {String} lastEnvironmentalLoginGpiiKey - Gpii key name of the last environmental login.
+ */
+gpii.app.getEnvironmentalLoginKey = function (lastEnvironmentalLoginGpiiKey, browserWindow, messageChannel) {
+    gpii.app.notifyWindow(browserWindow, messageChannel, lastEnvironmentalLoginGpiiKey);
 };
 
 /**
