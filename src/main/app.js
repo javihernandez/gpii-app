@@ -204,6 +204,7 @@ fluid.defaults("gpii.app", {
             options: {
                 appTextZoomPath: "appTextZoom",
                 model: {
+                    lastEnvironmentalLoginGpiiKey : "{lifecycleManager}.model.lastEnvironmentalLoginGpiiKey",
                     isKeyedIn: "{app}.model.isKeyedIn",
                     keyedInUserToken: "{app}.model.keyedInUserToken",
 
@@ -450,6 +451,10 @@ fluid.defaults("gpii.app", {
         resetAllToStandard: {
             funcName: "gpii.app.resetAllToStandard",
             args: ["{that}", "{psp}", "{qssWrapper}.qss"]
+        },
+        // Re-apply the last environmental login
+        reApplyPreferences: {
+            func: "{lifecycleManager}.replayEnvironmentalLogin"
         },
         exit: {
             funcName: "gpii.app.exit",
