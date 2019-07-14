@@ -1,0 +1,54 @@
+/* Sign-in form specific styles: BEGIN */
+
+.fl-qssSignInWidget .fl-qssWidget-tip ul {
+    margin-top: 0;
+}
+
+.fl-qssSignInWidget .fl-sigin-form .form-control {
+    width: 100%;
+    font-size: 9px;
+    padding: 3px 5px;
+    margin-bottom: 10px;
+}
+
+.fl-qssSignInWidget .fl-btn {
+    width: auto;
+    min-width: auto;
+    min-height: 25px;
+    padding: 5px 10px;
+    color: white;
+    background: #002957;
+    border-color: #002957;
+    border-radius: 3px;
+    font-size: 10px;
+    line-height: 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.fl-qssSignInWidget .fl-signInBtn {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 5px;
+}
+
+.fl-qssSignInWidget .fl-error {
+    margin: -5px 0 5px 0;
+    padding: 1px 5px;
+    background: #ffcfdd;
+    border-left: 3px solid #bb0000;
+    font-size: 9px;
+}
+
+.fl-link-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fl-passwordInput-link {
+    font-size: 8px;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+/* Sign-in form specific styles: END */

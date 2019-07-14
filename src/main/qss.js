@@ -265,6 +265,10 @@ fluid.defaults("gpii.app.qssWrapper", {
                             "qssWidget"
                         ]
                     },
+                    onQssWidgetSignInRequested: {
+                        funcName: "fluid.fail",
+                        args: ["Signing is not currently supported."]
+                    },
                     onQssWidgetNotificationRequired: {
                         func: "{qssNotification}.show",
                         args: [{

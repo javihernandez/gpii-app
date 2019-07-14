@@ -13,16 +13,22 @@
         <link rel="stylesheet" href="css/qssToggleWidget.css">
         <link rel="stylesheet" href="css/qssUSBWidget.css">
         <link rel="stylesheet" href="css/qssVolumeWidget.css">
+        <link rel="stylesheet" href="css/qssMySavedSettingsWidget.css">
 
         <script type="text/javascript" src="../../../node_modules/infusion/src/lib/jquery/core/js/jquery.js"></script>
         <script type="text/javascript" src="../../../node_modules/infusion/dist/infusion-all.js"></script>
 
         <script type="text/javascript" src="js/qssMenuWidget.js"></script>
         <script type="text/javascript" src="js/qssScreenCaptureWidget.js"></script>
+
         <script type="text/javascript" src="js/qssOfficeWidget.js"></script>
         <script type="text/javascript" src="js/qssVolumeWidget.js"></script>
         <script type="text/javascript" src="js/qssOpenUsbWidget.js"></script>
         <script type="text/javascript" src="js/qssTranslateToolsWidget.js"></script>
+
+        <script type="text/javascript" src="js/qssSignInWidget.js"></script>
+        <script type="text/javascript" src="js/qssMyPreferenceSettingsWidget.js"></script>
+
         <script type="text/javascript" src="js/qssStepperWidget.js"></script>
         <script type="text/javascript" src="js/qssToggleWidget.js"></script>
         <script type="text/javascript" src="js/qssWidget.js"></script>
@@ -189,6 +195,42 @@
                     <div class="flc-qssWidget-tip fl-qssWidget-tip flc-qssTranslateToolsWidget-controls fl-qssMenuWidget-controls"></div>
                 </div>
                 <div class="flc-qssWidget-learnMoreLink fl-qssWidget-learnMoreLink fl-focusable" role="link" tabindex="0"></div>
+
+            <!-- the Sign In Widget -->
+            <div class="flc-qssSignInWidget fl-dialog-content fl-scrollable fl-qssSignInWidget">
+                <div class="flc-qssWidget-tip fl-qssWidget-tip"></div>
+                <div class="flc-qssWidget-learnMoreLink fl-qssWidget-learnMoreLink fl-focusable" role="link" tabindex="0"></div>
+                <div class="fl-sigin-form form-group">
+                    <label class="flc-emailTextInput-label"></label>
+                    <input type="text" class="flc-emailTextInput form-control fl-focusable" autofocus>
+
+                    <div class="fl-link-container">
+                        <label class="flc-passwordInput-label"></label>
+                        <div class="flc-passwordInput-link fl-passwordInput-link fl-focusable" role="link" tabindex="0"></div>
+                    </div>
+
+                    <input type="password" class="flc-passwordInput form-control fl-focusable">
+
+                    <div class="flc-error fl-error">
+                        <div class="flc-errorDetails fl-errorDetails"></div>
+                    </div>
+
+                    <button class="flc-signInBtn btn fl-btn fl-signInBtn fl-focusable">
+                        <span class="flc-btnLabel fl-btnLabel"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- the My Saved Preference Settings Widget -->
+            <div class="flc-qssMyPreferenceSettingsWidget fl-dialog-content fl-scrollable">
+                <div class="flc-qssWidget-tip fl-qssWidget-tip"></div>
+                <div class="flc-qssWidget-learnMoreLink fl-qssWidget-learnMoreLink fl-focusable" role="link" tabindex="0"></div>
+                <div class="flc-qssMenuWidget-controlsWrapper fl-qssMenuWidget-controlsWrapper">
+                    <div role="radiogroup" class="flc-qssMenuWidget-controls fl-qssMenuWidget-controls"></div>
+                </div>
+                <button class="flc-signOutBtn btn fl-btn fl-focusable">
+                    <span class="flc-btnLabel fl-btnLabel"></span>
+                </button>
             </div>
         </div>
         <div class="fl-qssWidget-arrow"></div>

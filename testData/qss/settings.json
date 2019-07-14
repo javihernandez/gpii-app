@@ -234,13 +234,23 @@
         "tabindex": 320,
         "messageKey": "undo"
     }, {
-        "path": "psp",
+        "path": "signIn",
         "schema": {
-            "type": "psp"
+            "type": "signIn"
         },
         "buttonTypes": ["smallButton"],
         "tabindex": 310,
-        "messageKey": "psp"
+        "messageKey": "signIn",
+        "learnMoreLink": "https://morphic.world/help/qsshelp#my-saved-settings"
+    }, {
+        "path": "myPreferenceSettings",
+        "schema": {
+            "type": "myPreferenceSettings"
+        },
+        "buttonTypes": ["smallButton"],
+        "tabindex": 310,
+        "messageKey": "myPreferenceSettings",
+        "learnMoreLink": "https://morphic.world/help/qsshelp#my-saved-settings"
     }, {
         "path": "resetAll",
         "schema": {

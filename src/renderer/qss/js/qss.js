@@ -43,7 +43,10 @@
             "cloud-folder-open": "gpii.qss.openCloudFolderPresenter",
             "launch-documorph":  "gpii.qss.launchDocuMorphPresenter",
             "volume":            "gpii.qss.volumeButtonPresenter",
-            "disabled":          "gpii.qss.disabledButtonPresenter"
+            "disabled":          "gpii.qss.disabledButtonPresenter",
+            "signIn":   "gpii.qss.widgetButtonPresenter",
+            "myPreferenceSettings": "gpii.qss.widgetButtonPresenter",
+            "disabled": "gpii.qss.disabledButtonPresenter"
         },
 
         dynamicContainerMarkup: {

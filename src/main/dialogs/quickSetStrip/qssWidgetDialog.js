@@ -40,7 +40,7 @@ fluid.defaults("gpii.app.qssWidget", {
     extraVerticalOffset: 7,
 
     // A list of QSS setting types for which this widget is applicable.
-    supportedSettings: ["string", "number", "boolean", "screenCapture", "openUSB", "volume", "office", "translateTools"],
+    supportedSettings: ["string", "number", "boolean", "screenCapture", "openUSB", "volume", "office", "translateTools", "signIn", "myPreferenceSettings"],
 
     model: {
         setting: {}
@@ -84,7 +84,8 @@ fluid.defaults("gpii.app.qssWidget", {
         onQssWidgetToggled: null,
         onQssWidgetSettingAltered: null,
         onQssWidgetNotificationRequired: null,
-        onQssWidgetCreated: null
+        onQssWidgetCreated: null,
+        onQssWidgetSignInRequested: null
     },
 
     components: {
@@ -113,8 +114,9 @@ fluid.defaults("gpii.app.qssWidget", {
                     onQssGetVolumeRequested: null,
 
                     onMetric: null,
-                    onMetricState: null
+                    onMetricState: null,
 
+                    onQssWidgetSignInRequested: "{qssWidget}.events.onQssWidgetSignInRequested"
                 },
                 listeners: {
                     onQssWidgetClosed: [{

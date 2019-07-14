@@ -58,7 +58,9 @@
             openUSB: ".flc-qssOpenUSBWidget",
             volume: ".flc-qssVolumeWidget",
             office: ".flc-qssOfficeWidget",
-            translateTools: ".flc-qssTranslateToolsWidget"
+            translateTools: ".flc-qssTranslateToolsWidget",
+            signIn: ".flc-qssSignInWidget",
+            myPreferenceSettings: ".flc-qssMyPreferenceSettingsWidget"
         },
 
         /**
@@ -73,7 +75,9 @@
             "openUSB": "gpii.qssWidget.openUSB",
             "volume": "gpii.qssWidget.volume",
             "office": "gpii.qssWidget.office",
-            "translateTools": "gpii.qssWidget.translateTools"
+            "translateTools": "gpii.qssWidget.translateTools",
+            "signIn": "gpii.qssWidget.signIn",
+            "myPreferenceSettings": "gpii.qssWidget.myPreferenceSettings"
         },
 
         events: {
@@ -95,7 +99,9 @@
             onQssUnmountUsbRequested: null,
 
             // Volume & Mute related event
-            onQssGetVolumeRequested: null
+            onQssGetVolumeRequested: null,
+
+            onQssWidgetSignInRequested: null
         },
 
         sounds: {},
@@ -235,7 +241,8 @@
                         // Volume button
                         onQssGetVolumeRequested:         "{qssWidget}.events.onQssGetVolumeRequested",
                         onMetric:                        "{qssWidget}.events.onMetric",
-                        onMetricState:                   "{qssWidget}.events.onMetricState"
+                        onMetricState:                   "{qssWidget}.events.onMetricState",
+                        onQssWidgetSignInRequested:      "{qssWidget}.events.onQssWidgetSignInRequested"
                     }
                 }
             }
