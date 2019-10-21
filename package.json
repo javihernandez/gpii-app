@@ -12,7 +12,7 @@
         "electron": "3.0.2",
         "electron-edge-js": "8.3.8",
         "electron-localshortcut": "3.1.0",
-        "gpii-windows": "JavierJF/windows#d66f63f51159848fa76442930232f9d8891452ee",
+        "gpii-windows": "javihernandez/windows#bfeb4b6a462e86521ddbb29128cb576d3bd9ae05",
         "infusion": "3.0.0-dev.20190328T144119Z.ec44dbfab",
         "nan": "2.10.0",
         "node-jqunit": "1.1.8",
