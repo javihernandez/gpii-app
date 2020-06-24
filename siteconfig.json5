@@ -17,23 +17,23 @@
         osSettingsAvailable: true,
 
         // Determines if the QSS will be shown automatically on Morphic's startup
-        showQssOnStart: false,
+        showQssOnStart: true,
 
         // Defines the delay in milliseconds before the tooltip is shown after a QSS button is selected
         tooltipDisplayDelay: 500, // ms
 
         // The scaling factor for the QSS
-        scaleFactor: 1.2,
+        scaleFactor: 1.1,
         urls: {
             account: "http://morphic.world/account",
-            cloudFolder: "https://sites.google.com/raisingthefloor.org/quickfolders/demo-quickfolder-page",
+            cloudFolder: "https://sites.google.com/raisingthefloor.org/quickfolders/chickasaw-quickfolder",
             myGoogleDrive: "https://drive.google.com/",
             myOneDrive: "https://onedrive.live.com/about/signin/",
             myDropbox: "https://www.dropbox.com/login",
             customizeQss: "https://morphic.world/"
         },
 
-        alwaysUseChrome: false,
+        alwaysUseChrome: true,
 
         // The template that is used for every label of the language setting's options.
         // The "%" followed by a word specifies a variable and there are three possible variables:
@@ -98,25 +98,27 @@
         buttonList: [
             {
                 "buttonId": "MakeYourOwn",
-                "buttonName": "Task Manager",
-                "buttonType": "KEY",
-                "buttonData": "^+{Escape}",
-                "popupText": "<p>Executes Ctrl+Shift+Esc combination, which opens Windows Task Manager.</p>"
+                "buttonName": "Helpful Web Links",
+                "buttonType": "WEB",
+                "buttonData": "https://sites.google.com/raisingthefloor.org/quickfolders/demo-quickfolder-page",
+                "fullScreen": false,
+                "popupText": "<p>Open Osceola Buenaventura Web page</p>",
+                "description": ""
             },
-            "||",
-            "language",
+            "|",
+            "translate-tools",
             "screen-zoom",
             "text-zoom",
             "high-contrast",
-            "snipping-tool",
             "color-vision",
-            "read-aloud",
+            "mouse",
             "volume",
-            "launch-documorph",
-            "cloud-folder-open",
+            "|",
+            "snipping-tool",
+            "office-simplification",
             "usb-open",
+            "read-aloud",
             "||",
-            "service-more",
             "service-save",
             "service-undo",
             "service-saved-settings",
@@ -128,30 +130,6 @@
             [ // first row of buttons
             ],
             [ // second row of buttons
-                {
-                    "buttonId": "MakeYourOwn",
-                    "buttonName": "Launch Notepad",
-                    "buttonType": "APP",
-                    "buttonData": "C:\\Windows\\system32\\notepad.exe",
-                    "fullScreen": true,
-                    "popupText": "<p>Launch the Notepad application.</p>",
-                    "description": "The full description of the button..."
-                }, {
-                    "buttonId": "MakeYourOwn",
-                    "buttonName": "Open Reddit",
-                    "buttonType": "WEB",
-                    "buttonData": "www.reddit.com",
-                    "fullScreen": true,
-                    "popupText": "<p>Open Reddit in a web browser.</p>",
-                    "description": "The full description of the button..."
-                },
-                "url-customize-qss",
-                "url-google-drive",
-                "url-one-drive",
-                "url-dropbox",
-                "translate-tools",
-                "office-simplification",
-                "mouse"
             ],
             [ // third row of buttons
             ]
@@ -243,7 +221,7 @@
 
     autoLogin: {
         blockedUsers: ["admin*", "guest*", "student*", "visitor*", "volunteer*"],
-        userIdSource: "username"
+        userIdSource: "regkey"
     },
 
     // Metrics switch (read by the service): "<morphic>:<metrics>"
