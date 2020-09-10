@@ -43,6 +43,7 @@
         "start": "set GPII_TEST_COUCH_USE_EXTERNAL=TRUE && electron .",
         "service": "npm --prefix ./node_modules/gpii-windows/gpii-service run service-dev",
         "dev": "set GPII_TEST_COUCH_USE_EXTERNAL=TRUE && electron . ./configs app.dev",
+        "smartworkReview": "set GPII_TEST_COUCH_USE_EXTERNAL=TRUE && electron . ./configs app.smartworkReview",
         "build": "electron ./scripts/compileMessageBundles.js && .\\trayButton\\build.cmd",
         "postinstall": "npm run build",
         "pretest": "npm run pretest:clean && npm run build && npm run pretest:instrument",

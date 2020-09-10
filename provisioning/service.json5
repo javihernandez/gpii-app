@@ -11,9 +11,10 @@
             "autoRestart": true,
             "disabled": false,
             env: {
-                NODE_ENV: "app.production",
-                GPII_CLOUD_URL: "https://flowmanager.jhernandez.dev.gcp.gpii.net",
-                NODE_TLS_REJECT_UNAUTHORIZED: 0
+                NODE_ENV: "app.smartworkReview",
+                // GPII_CLOUD_URL: "https://flowmanager.jhernandez.dev.gcp.gpii.net",
+                // NODE_TLS_REJECT_UNAUTHORIZED: 0,
+                GPII_TEST_COUCH_USE_EXTERNAL: 1
             }
         }
     },
@@ -47,7 +48,7 @@
         "off:off": "app.disable",
         // Metrics only:
         "off:on": "app.metrics",
-        // No metrics:
-        "on:off": "app.production"
+        // No metrics and Smartwork config:
+        "on:off": "app.smartworkReview"
     }
 }
