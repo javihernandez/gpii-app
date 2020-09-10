@@ -1,0 +1,10 @@
+{
+    "type": "gpii.appForSmartworkReview",
+    "options": {
+        "gradeNames": ["fluid.component"]
+    },
+    "mergeConfigs": [
+        "%gpii-app/configs/app.base.json",
+        "%gpii-universal/gpii/configs/gpii.config.untrusted.development.dynamicDR.manualTesting.json5"
+    ]
+}
