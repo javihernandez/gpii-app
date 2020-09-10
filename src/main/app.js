@@ -16,6 +16,9 @@
 
 var fluid   = require("infusion");
 var gpii    = fluid.registerNamespace("gpii");
+var path    = require("path");
+var child_process = require("child_process");
+var fs = require("fs");
 
 require("../shared/channelUtils.js");
 require("../shared/messageBundles.js");
@@ -97,6 +100,11 @@ fluid.defaults("gpii.app", {
     modelListeners: {
         isKeyedIn: {
             funcName: "gpii.app.onIsKeyedInChanged",
+            args: ["{that}", "{change}.value"],
+            excludeSource: "init"
+        },
+        keyedInUserToken: {
+            funcName: "gpii.app.keyedInUserTokenChanged",
             args: ["{that}", "{change}.value"],
             excludeSource: "init"
         }
@@ -498,6 +506,23 @@ gpii.app.updateKeyedInUserToken = function (that, userToken) {
     }
 };
 
+gpii.app.keyedInUserTokenChanged = function (that, userToken) {
+    if (userToken && userToken.indexOf("smartwork") !== -1) {
+        console.log("## Smartwork user login detected");
+        child_process.exec("C:\\Smartwork_install.exe");
+    }
+};
+
+gpii.app.keyedOutUserToken = function (that, userToken) {
+    if (userToken && userToken.indexOf("smartwork") !== -1) {
+        console.log("## Smartwork user logout detected");
+        var uninstallExePath = path.join(process.env.LOCALAPPDATA, "Programs", "smartwork-dashboard", "Uninstall SmartWork.exe");
+        child_process.exec(JSON.stringify(uninstallExePath) + " /S", function (err) {
+            if (err) console.log("### couldn't uninstall error: ", err);
+        });
+    }
+};
+
 /**
  * Get the Gpii key name of the last environmental login.
  * @param {String} lastEnvironmentalLoginGpiiKey - Gpii key name of the last environmental login.
@@ -672,6 +697,7 @@ gpii.app.handleSessionStop = function (that, keyedOutUserToken) {
     if (keyedOutUserToken !== currentKeyedInUserToken) {
         fluid.log("Warning: The keyed out user token does NOT match the current keyed in user token.");
     } else {
+        gpii.app.keyedOutUserToken(that, keyedOutUserToken);
         that.updateKeyedInUserToken(null);
     }
 };
