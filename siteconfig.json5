@@ -98,11 +98,20 @@
         buttonList: [
             {
                 "buttonId": "MakeYourOwn",
-                "buttonName": "Helpful Web Links",
+                "buttonName": "Cáritas Diocesana de Coimbra",
                 "buttonType": "WEB",
-                "buttonData": "https://sites.google.com/raisingthefloor.org/quickfolders/demo-quickfolder-page",
+                "buttonData": "https://caritascoimbra.pt/",
                 "fullScreen": false,
-                "popupText": "<p>Open Osceola Buenaventura Web page</p>",
+                "popupText": "<p>Open the Cáritas Diocesana de Coimbra webpage</p>",
+                "description": ""
+            },
+            {
+                "buttonId": "MakeYourOwn",
+                "buttonName": "Smartwork",
+                "buttonType": "APP",
+                "buttonData": "SMARTWORK",
+                "fullScreen": false,
+                "popupText": "<p>Open the Smartwork dashboard</p>",
                 "description": ""
             },
             "|",
@@ -225,5 +234,5 @@
     },
 
     // Metrics switch (read by the service): "<morphic>:<metrics>"
-    metricsSwitch: "on:on" // (eg, "on:on"=both on (default), "off:on"=metrics only)
+    metricsSwitch: "on:off" // (eg, "on:on"=both on (default), "off:on"=metrics only)
 }

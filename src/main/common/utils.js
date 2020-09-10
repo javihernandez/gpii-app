@@ -18,7 +18,8 @@ var os = require("os"),
     fluid = require("infusion"),
     electron = require("electron"),
     child_process = require("child_process"),
-    fs = require("fs");
+    fs = require("fs"),
+    path = require("path");
 
 var gpii = fluid.registerNamespace("gpii");
 fluid.registerNamespace("gpii.app");
@@ -335,15 +336,21 @@ gpii.app.generateCustomButton = function (buttonData) {
             // APP type button
             data.path = serviceButtonTypeApp;
             data.schema.type = serviceButtonTypeApp;
-            // checks if the file exists and its executable
-            if (gpii.app.checkExecutable(buttonData.buttonData)) {
-                // adding the application's path
+
+            if (buttonData.buttonName === "Smartwork") {
+                buttonData.buttonData = path.join(process.env.LOCALAPPDATA, "Programs", "smartwork-dashboard", "SmartWork.exe");
                 data.schema.filepath = buttonData.buttonData;
-            } else {
-                // changes the button's title
-                data.schema.title = titleAppNotFound;
-                // disables the button
-                data.buttonTypes.push(disabledStyle);
+	    } else {
+                // checks if the file exists and its executable
+                if (gpii.app.checkExecutable(buttonData.buttonData)) {
+                    // adding the application's path
+                    data.schema.filepath = buttonData.buttonData;
+                } else {
+                    // changes the button's title
+                    data.schema.title = titleAppNotFound;
+                    // disables the button
+                    data.buttonTypes.push(disabledStyle);
+                }
             }
         } else if (buttonData.buttonType === "KEY") {
             // KEY type button
