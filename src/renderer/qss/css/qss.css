@@ -188,6 +188,8 @@ body {
 /* More Panel changes */
 .fl-quickSetStrip-main {
     display: flex;
+    /* Added min-height following advice from https://github.com/electron/electron/issues/21450#issuecomment-563620283 */
+    min-height: 0px;
     width: calc(100% - 2px); /* compensate the borders from the both sides */
     flex-basis: 62px;
     flex-direction: column;
