@@ -130,7 +130,10 @@ fluid.defaults("gpii.app.dialog", {
             alwaysOnTop: true,
             skipTaskbar: true,
             type: "toolbar",
-            resizable: false
+            resizable: false,
+            webPreferences: {
+                nodeIntegration: true
+            }
         },
         filePrefixPath: "src/renderer",
         fileSuffixPath: null,           // e.g. "waitDialog/index.html"
@@ -358,7 +361,7 @@ gpii.app.dialog.makeDialog = function (that, windowOptions, url, params) {
             // These calls must only happen if the dialog and its contents have not been destroyed, which might
             // occur in test runs.
             if (!dialog.isDestroyed() && !dialog.webContents.isDestroyed()) {
-                dialog.webContents.setZoomFactor(1);
+                dialog.webContents.zoomFactor = 1;
                 dialog.webContents.setVisualZoomLevelLimits(1, 1);
                 dialog.webContents.setLayoutZoomLevelLimits(0, 0);
             }
