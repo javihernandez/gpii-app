@@ -96,30 +96,29 @@
         // - "grid-visible", or "x" // For visible gray grid space (same size as the invisible one)
 
         buttonList: [
-            {
-                "buttonId": "MakeYourOwn",
-                "buttonName": "Task Manager",
-                "buttonType": "KEY",
-                "buttonData": "^+{Escape}",
-                "popupText": "<p>Executes Ctrl+Shift+Esc combination, which opens Windows Task Manager.</p>"
-            },
+            "cloud-folder-open",
             "||",
-            "language",
             "screen-zoom",
             "text-zoom",
             "high-contrast",
-            "snipping-tool",
             "color-vision",
-            "read-aloud",
+            "mouse",
             "volume",
-            "launch-documorph",
-            "cloud-folder-open",
-            "usb-open",
             "||",
-            "service-more",
-            "service-save",
+            "read-aloud",
+            "snipping-tool",
+            "office-simplification",
+            "launch-documorph",
+            "usb-open",
+            {
+                "buttonId": "MakeYourOwn",
+                "buttonName": "Morphic User Guide",
+                "buttonType": "WEB",
+                "buttonData": "swagger.smartwork.sparkworks.net/docs/index.html",
+                "popupText": "<p>Open Morphic User Guide.</p>"
+            },
+            "||",
             "service-undo",
-            "service-saved-settings",
             "service-reset-all",
             "service-close"
         ],
@@ -149,9 +148,7 @@
                 "url-google-drive",
                 "url-one-drive",
                 "url-dropbox",
-                "translate-tools",
-                "office-simplification",
-                "mouse"
+                "translate-tools"
             ],
             [ // third row of buttons
             ]
