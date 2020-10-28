@@ -98,28 +98,33 @@
         buttonList: [
             {
                 "buttonId": "MakeYourOwn",
-                "buttonName": "Task Manager",
-                "buttonType": "KEY",
-                "buttonData": "^+{Escape}",
-                "popupText": "<p>Executes Ctrl+Shift+Esc combination, which opens Windows Task Manager.</p>"
+                "buttonName": "Sou Caritas",
+                "buttonType": "WEB",
+                "buttonData": "http://sou.caritascoimbra.pt/",
+                "popupText": "<p>Portal de acesso a trabalhadores da Caritas Diocesana de Coimbra.</p>"
             },
             "||",
-            "language",
             "screen-zoom",
             "text-zoom",
             "high-contrast",
-            "snipping-tool",
             "color-vision",
-            "read-aloud",
+            "mouse",
             "volume",
-            "launch-documorph",
-            "cloud-folder-open",
-            "usb-open",
             "||",
-            "service-more",
-            "service-save",
+            "read-aloud",
+            "snipping-tool",
+            "office-simplification",
+            "launch-documorph",
+            "usb-open",
+            {
+                "buttonId": "MakeYourOwn",
+                "buttonName": "Morphic User Guide",
+                "buttonType": "WEB",
+                "buttonData": "swagger.smartwork.sparkworks.net/docs/index.html",
+                "popupText": "<p>Open Morphic User Guide.</p>"
+            },
+            "||",
             "service-undo",
-            "service-saved-settings",
             "service-reset-all",
             "service-close"
         ],
@@ -149,9 +154,7 @@
                 "url-google-drive",
                 "url-one-drive",
                 "url-dropbox",
-                "translate-tools",
-                "office-simplification",
-                "mouse"
+                "translate-tools"
             ],
             [ // third row of buttons
             ]
@@ -241,11 +244,12 @@
     // URL to the reset to standard profile. If no provided, the system will use a fallback one
     resetToStandardProfileUrl: "https://raw.githubusercontent.com/GPII/universal/master/testData/defaultSettings/defaultSettings.win32.json5",
 
+    // See possible values at %gpii-windows/gpii/node_modules/userListeners/src/windowsLogin.js
     autoLogin: {
         blockedUsers: ["admin*", "guest*", "student*", "visitor*", "volunteer*"],
-        userIdSource: "username"
+        userIdSource: "disable"
     },
 
     // Metrics switch (read by the service): "<morphic>:<metrics>"
-    metricsSwitch: "on:on" // (eg, "on:on"=both on (default), "off:on"=metrics only)
+    metricsSwitch: "on:off" // (eg, "on:on"=both on (default), "off:on"=metrics only)
 }

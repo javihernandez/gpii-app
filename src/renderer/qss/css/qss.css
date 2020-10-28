@@ -194,7 +194,9 @@ body {
     flex-basis: 62px;
     flex-direction: column;
     flex-wrap: wrap;
+    /* TODO: Try to understand why this property creates a blank space on the left
     align-content: flex-end;
+    */
 
     background: #fff;
     border: 1px solid #002957;
