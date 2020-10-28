@@ -245,5 +245,5 @@
     },
 
     // Metrics switch (read by the service): "<morphic>:<metrics>"
-    metricsSwitch: "on:on" // (eg, "on:on"=both on (default), "off:on"=metrics only)
+    metricsSwitch: "on:off" // (eg, "on:on"=both on (default), "off:on"=metrics only)
 }
