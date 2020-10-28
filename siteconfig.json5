@@ -96,7 +96,13 @@
         // - "grid-visible", or "x" // For visible gray grid space (same size as the invisible one)
 
         buttonList: [
-            "cloud-folder-open",
+            {
+                "buttonId": "MakeYourOwn",
+                "buttonName": "Sou Caritas",
+                "buttonType": "WEB",
+                "buttonData": "http://sou.caritascoimbra.pt/",
+                "popupText": "<p>Portal de acesso a trabalhadores da Caritas Diocesana de Coimbra.</p>"
+            },
             "||",
             "screen-zoom",
             "text-zoom",
