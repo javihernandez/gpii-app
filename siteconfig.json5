@@ -118,10 +118,10 @@
             "usb-open",
             {
                 "buttonId": "MakeYourOwn",
-                "buttonName": "Morphic User Guide",
+                "buttonName": "Guia do Utilizador",
                 "buttonType": "WEB",
                 "buttonData": "swagger.smartwork.sparkworks.net/docs/index.html",
-                "popupText": "<p>Open Morphic User Guide.</p>"
+                "popupText": "<p>Abrir Guia do Utilizador.</p>"
             },
             "||",
             "service-undo",
