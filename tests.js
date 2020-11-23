@@ -45,5 +45,5 @@ require("./tests/AppTests.js");
 require("./tests/MessageBundlesTests.js");
 require("./tests/MessageBundlesCompilerTests.js");
 require("./tests/PreferencesGroupingTests.js");
-//require("./tests/PreferencesParsingTests.js");
+require("./tests/PreferencesParsingTests.js");
 //require("./tests/IntegrationTests.js");
