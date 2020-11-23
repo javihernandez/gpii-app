@@ -15,7 +15,7 @@ jobs:
           node-mirror: "https://nodejs.org/download/release/"
 
       - uses: actions/checkout@v2
-      - run: ./provisioning/CouchDB.ps1
+      - run: ./provisioning/CISetup.ps1
       - uses: actions/setup-python@v2
         with:
           python-version: '2.7.17'
