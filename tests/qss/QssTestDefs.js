@@ -21,7 +21,9 @@ require("./qssWidget-languageTests.js");
 require("./qssWidget-readAloudTests.js");
 require("./qssWidget-textZoomTests.js");
 require("./qssWidget-documorphTests.js");
-require("./qssWidget-volumeTests.js");
+// Disabled volumeTests as we can't test volume settings on Windows.
+// More information at https://gpii.atlassian.net/browse/GPII-4518
+//require("./qssWidget-volumeTests.js");
 require("./qssWidget-quickFolderTests.js");
 require("./qssWidget-usbTests.js");
 require("./qssWidget-screenCaptureTests.js");
