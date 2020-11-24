@@ -237,7 +237,7 @@ var qssInstalledLanguages = [
 
 gpii.tests.qss.testDefs = {
     name: "QSS Widget integration tests",
-    expect: 104,
+    //expect: 104,
     config: {
         configName: "gpii.tests.dev.config",
         configPath: "tests/configs"
@@ -278,34 +278,34 @@ gpii.tests.qss.testDefs = {
             args: ["QSS has initialized successfully"]
         }],
         // Commons
-        gpii.tests.qss.navigationTests,
-        qssInstalledLanguages,
-        gpii.tests.qss.tooltipTests,
-        gpii.tests.qss.widgetClosingBehaviourTests,
-        gpii.tests.qss.restartWarningTests,
+        //gpii.tests.qss.navigationTests,
+        //qssInstalledLanguages,
+        //gpii.tests.qss.tooltipTests,
+        //gpii.tests.qss.widgetClosingBehaviourTests,
+        //gpii.tests.qss.restartWarningTests,
         // Service Buttons
-        gpii.tests.qss.undoTests,
-        gpii.tests.qss.saveTests,
-        gpii.tests.qss.morePanelTests,
+        //gpii.tests.qss.undoTests,
+        //gpii.tests.qss.saveTests,
+        //gpii.tests.qss.morePanelTests,
         // Widgets
         gpii.tests.qss.languageTests,
-        gpii.tests.qss.usbTests,
-        gpii.tests.qss.quickFolderTests,
-        gpii.tests.qss.volumeTests,
-        gpii.tests.qss.documorphTests,
-        gpii.tests.qss.urlGoogleDrive,
-        gpii.tests.qss.urlOneDrive,
-        gpii.tests.qss.urlDropboxDrive,
-        gpii.tests.qss.textZoomTests,
-        gpii.tests.qss.readAloudTests,
-        gpii.tests.qss.screenCaptureTests,
-        gpii.tests.qss.officeSimplifyTests,
-        gpii.tests.qss.customizeQuickstripTests,
-        gpii.tests.qss.menuTests,
-        gpii.tests.qss.stepperTests,
-        gpii.tests.qss.colorVisionTests,
-        gpii.tests.qss.snippingToolTests,
-        gpii.tests.qss.translationsTests,
-        gpii.tests.qss.mouseTests
+        //gpii.tests.qss.usbTests,
+        //gpii.tests.qss.quickFolderTests,
+        //gpii.tests.qss.volumeTests,
+        //gpii.tests.qss.documorphTests,
+        //gpii.tests.qss.urlGoogleDrive,
+        //gpii.tests.qss.urlOneDrive,
+        //gpii.tests.qss.urlDropboxDrive,
+        //gpii.tests.qss.textZoomTests,
+        //gpii.tests.qss.readAloudTests,
+        //gpii.tests.qss.screenCaptureTests,
+        //gpii.tests.qss.officeSimplifyTests,
+        //gpii.tests.qss.customizeQuickstripTests,
+        //gpii.tests.qss.menuTests,
+        //gpii.tests.qss.stepperTests,
+        //gpii.tests.qss.colorVisionTests,
+        //gpii.tests.qss.snippingToolTests,
+        //gpii.tests.qss.translationsTests,
+        //gpii.tests.qss.mouseTests
     )
 };

@@ -227,19 +227,19 @@ if (gpii.tests.app.isInstrumented) {
 
 
 gpii.tests.app.bootstrapServer([
-    fluid.copy(gpii.tests.app.testDefs),
-    fluid.copy(gpii.tests.dev.testDefs),
-    fluid.copy(gpii.tests.timer.testDefs),
-    fluid.copy(gpii.tests.dialogManager.testDefs),
+    //fluid.copy(gpii.tests.app.testDefs),
+    //fluid.copy(gpii.tests.dev.testDefs),
+    //fluid.copy(gpii.tests.timer.testDefs),
+    //fluid.copy(gpii.tests.dialogManager.testDefs),
     fluid.copy(gpii.tests.qss.testDefs),
-    fluid.copy(gpii.tests.sequentialDialogs.testDefs),
-    //fluid.copy(gpii.tests.shortcutsManager.testDefs), // NOT OK
-    fluid.copy(gpii.tests.settingsBroker.testDefs),
-    fluid.copy(gpii.tests.surveys.dynamicSurveyConnectorTestDefs),
-    fluid.copy(gpii.tests.surveyTriggerManager.testDefs),
-    fluid.copy(gpii.tests.siteConfigurationHandler.testDefs),
-    fluid.copy(gpii.tests.storage.testDefs),
-    fluid.copy(gpii.tests.userErrorsHandler.testDefs),
-    fluid.copy(gpii.tests.gpiiConnector.testDefs),  // should be changed to match the new specification
-    fluid.copy(gpii.tests.webview.testDefs)
+    //fluid.copy(gpii.tests.sequentialDialogs.testDefs),
+    ////fluid.copy(gpii.tests.shortcutsManager.testDefs), // NOT OK
+    //fluid.copy(gpii.tests.settingsBroker.testDefs),
+    //fluid.copy(gpii.tests.surveys.dynamicSurveyConnectorTestDefs),
+    //fluid.copy(gpii.tests.surveyTriggerManager.testDefs),
+    //fluid.copy(gpii.tests.siteConfigurationHandler.testDefs),
+    //fluid.copy(gpii.tests.storage.testDefs),
+    //fluid.copy(gpii.tests.userErrorsHandler.testDefs),
+    //fluid.copy(gpii.tests.gpiiConnector.testDefs),  // should be changed to match the new specification
+    //fluid.copy(gpii.tests.webview.testDefs)
 ]);
