@@ -103,8 +103,7 @@ fluid.defaults("gpii.app.messageBundles", {
         messages: {}
     },
 
-    // TODO: Revert to "en" after https://gpii.atlassian.net/browse/SW-8 is implemented
-    defaultLocale: "pt_PT",
+    defaultLocale: "en-US",
 
     messageBundlesPath: "build/gpii-app-messageBundles.json",
 
