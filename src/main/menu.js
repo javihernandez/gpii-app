@@ -177,16 +177,16 @@ fluid.defaults("gpii.app.menuInAppDev", {
     locales: {
         label: "Locale",
         submenu: [{
-            label: "bg",
+            label: "bg-BG",
             click: "onLocale",
             args: {
-                locale: "bg"
+                locale: "bg-BG"
             }
         }, {
-            label: "en",
+            label: "en-US",
             click: "onLocale",
             args: {
-                locale: "en_us"
+                locale: "en-US"
             }
         }, {
             label: "missing",

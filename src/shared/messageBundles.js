@@ -195,11 +195,17 @@ gpii.app.messageBundles.loadMessageBundles = function (messageBundlesPath) {
  * @param {String} defaultLocale - The default locale.
  */
 gpii.app.messageBundles.updateMessages = function (that, messageBundles, locale, defaultLocale) {
+    // TODO: Revisit the language code handling as a whole
+
     // make sure the locale is in proper state
     locale = locale || "";
 
+    // TODO: Create a utility that provides the genericLocale, or better said, the default locale
+    // for a specific language. i.e.: fr-FR is the preferred default for French in case the system uses
+    // fr-CA and such bundle is not provided.
     var genericLocale = locale.split("-")[0];
-    var messages = messageBundles[locale.toLowerCase()] || messageBundles[genericLocale];
+    // Ensure that we support different forms of locale tags, i.e.: en_us, en-US and use the generic as a fallback
+    var messages = messageBundles[locale] || messageBundles[locale.toLowerCase()] || messageBundles[genericLocale];
 
     if (!messages) {
         fluid.log(fluid.logLevel.WARN, "Bundles for locale - " + locale + " - are missing. Using default locale of: " + defaultLocale);
