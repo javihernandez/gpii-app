@@ -14,7 +14,6 @@
  * https://github.com/GPII/universal/blob/master/LICENSE.txt
  */
 "use strict";
-require("./common/utils.js");
 
 var fluid = require("infusion");
 var gpii = fluid.registerNamespace("gpii");
@@ -28,7 +27,8 @@ fluid.defaults("gpii.app.settingsHandlerConnector", {
     gradeNames: ["gpii.app.ws", "fluid.modelComponent"],
     solutionId: "net.gpii.morphic",
     model: {
-        "scaleFactor": null
+        settings: null,
+        settingsSnapshot: null
     },
     listeners: {
         "onCreate.connect": "{that}.connect",
@@ -39,9 +39,10 @@ fluid.defaults("gpii.app.settingsHandlerConnector", {
         "onMessageReceived.handleRawChannelMessage": "{that}.handleRawChannelMessage"
     },
     modelListeners: {
-        "scaleFactor": {
+        "settings": {
             funcName: "gpii.app.settingsHandlerConnector.modelChanged",
-            args: ["{that}", "{change}"]
+            args: ["{that}", "{change}"],
+            excludeSource: "init"
         }
     },
     invokers: {
@@ -64,6 +65,29 @@ fluid.defaults("gpii.app.settingsHandlerConnector", {
  */
 gpii.app.settingsHandlerConnector.handleRawChannelMessage = function (that, message) {
     console.log("# Received message", JSON.stringify(message));
+
+    // Connection to the websockets settingsHandler was succeeded
+    if (message.type === "connectionSucceeded") {
+        console.log("# connectionSucceeded");
+    // Core has received current Morphic settings
+    } else if (message.type === "changeSettingsReceived") {
+        console.log("# core received current Morphic settings");
+    // The settings have changed and core is telling us about it
+    } else if (message.type === "onSettingsChanged") {
+        console.log("# The settings have been updated to: ", message.payload);
+        // The user has keyed-in and we need to create a snapshot and apply
+        // the incoming settings
+        if (message.payload) {
+            that.applier.change("settingsSnapshot", that.model.settings);
+            that.applier.change("settings", message.payload);
+        // The user has keyed out and we need to restore the snapshot
+        } else {
+            that.applier.change("settings", that.model.settingsSnapshot);
+            that.applier.change("settingsSnapshot", message.payload);
+        }
+    } else {
+        console.log("# unhandled message");
+    }
 };
 
 gpii.app.settingsHandlerConnector.setup = function (that, solutionId) {
@@ -72,5 +96,5 @@ gpii.app.settingsHandlerConnector.setup = function (that, solutionId) {
 };
 
 gpii.app.settingsHandlerConnector.modelChanged = function (that, change) {
-    console.log("## model changed: ", change);
+    console.log("## settingsHandlerConnector model changed: ", change);
 };

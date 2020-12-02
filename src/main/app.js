@@ -30,6 +30,7 @@ require("./factsManager.js");
 require("./gpiiConnector.js");
 require("./menu.js");
 require("./qss.js");
+require("./qssUserSettings.js");
 require("./settingsBroker.js");
 require("./shortcutsManager.js");
 require("./settingsHandlerConnector.js")
@@ -164,18 +165,28 @@ fluid.defaults("gpii.app", {
                 }
             }
         },
-        settingsHandlerConnector: {
-            type: "gpii.app.settingsHandlerConnector",
+        qssUserSettings: {
+            type: "gpii.app.qssUserSettings",
             createOnEvent: "onQSSDialogReady",
             options: {
                 listeners: {
                     "onCreate.sayHello": {
                         funcName: "console.log",
-                        args: ["# settingsHandlerConnector was successfully created! model: ", "{settingsHandlerConnector}.model"]
+                        args: ["# qssUserSettings was successfully created! model: ", "{qssUserSettings}.model"]
                     }
                 },
                 model: {
-                    scaleFactor: "{qssWrapper}.model.scaleFactor"
+                    "scaleFactor": "{qssWrapper}.model.scaleFactor",
+                    "closeQssOnClickOutside": "{qssWrapper}.model.closeQssOnBlur"
+                }
+            }
+        },
+        settingsHandlerConnector: {
+            type: "gpii.app.settingsHandlerConnector",
+            createOnEvent: "onQSSDialogReady",
+            options: {
+                model: {
+                    "settings": "{qssUserSettings}.model"
                 }
             }
         },
