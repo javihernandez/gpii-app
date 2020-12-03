@@ -29,6 +29,7 @@ fluid.defaults("gpii.app.qssUserSettings", {
         scaleFactor: null,
         closeQssOnClickOutside: null,
         tooltipDisplayDelay: null,
+        alwaysUseChrome: null,
         appBarQss: null,
         disableRestartWarning: null,
         openQssShortcut: null

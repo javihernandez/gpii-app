@@ -179,6 +179,7 @@ fluid.defaults("gpii.app", {
                     "scaleFactor": "{qssWrapper}.model.scaleFactor",
                     "closeQssOnClickOutside": "{qssWrapper}.model.closeQssOnBlur",
                     "tooltipDisplayDelay": "{qssWrapper}.qssTooltip.model.showDelay",
+                    "alwaysUseChrome": "{qssWrapper}.model.alwaysUseChrome",
                     "appBarQss": "{app}.model.preferences.appBarQss",
                     "disableRestartWarning": "{app}.model.preferences.disableRestartWarning",
                     "openQssShortcut": "{app}.model.preferences.gpiiAppShortcut"

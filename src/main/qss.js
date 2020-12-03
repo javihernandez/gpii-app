@@ -107,7 +107,8 @@ fluid.defaults("gpii.app.qssWrapper", {
         // user preferences
         closeQssOnBlur: false,
         appBarQss: false,
-        disableRestartWarning: false
+        disableRestartWarning: false,
+        alwaysUseChrome: "{that}.options.siteConfig.alwaysUseChrome"
     },
 
     events: {
@@ -249,7 +250,12 @@ fluid.defaults("gpii.app.qssWrapper", {
             type: "gpii.app.undoInWrapper"
         },
         qss: {
-            type: "gpii.app.qssInWrapper"
+            type: "gpii.app.qssInWrapper",
+            options: {
+                model: {
+                    alwaysUseChrome: "{qssWrapper}.model.alwaysUseChrome"
+                }
+            }
         },
         qssWidget: {
             type: "gpii.app.qssWidget",
