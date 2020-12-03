@@ -27,7 +27,8 @@ fluid.defaults("gpii.app.qssUserSettings", {
     gradeNames: ["fluid.modelComponent"],
     model: {
         scaleFactor: null,
-        closeQssOnClickOutside: null
+        closeQssOnClickOutside: null,
+        tooltipDisplayDelay: null
     },
     modelListeners: {
       "*": {
