@@ -180,7 +180,8 @@ fluid.defaults("gpii.app", {
                     "closeQssOnClickOutside": "{qssWrapper}.model.closeQssOnBlur",
                     "tooltipDisplayDelay": "{qssWrapper}.qssTooltip.model.showDelay",
                     "appBarQss": "{app}.model.preferences.appBarQss",
-                    "disableRestartWarning": "{app}.model.preferences.disableRestartWarning"
+                    "disableRestartWarning": "{app}.model.preferences.disableRestartWarning",
+                    "openQssShortcut": "{app}.model.preferences.gpiiAppShortcut"
                 }
             }
         },

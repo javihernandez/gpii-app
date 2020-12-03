@@ -30,7 +30,8 @@ fluid.defaults("gpii.app.qssUserSettings", {
         closeQssOnClickOutside: null,
         tooltipDisplayDelay: null,
         appBarQss: null,
-        disableRestartWarning: null
+        disableRestartWarning: null,
+        openQssShortcut: null
     },
     modelListeners: {
       "*": {
