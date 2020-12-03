@@ -28,7 +28,8 @@ fluid.defaults("gpii.app.qssUserSettings", {
     model: {
         scaleFactor: null,
         closeQssOnClickOutside: null,
-        tooltipDisplayDelay: null
+        tooltipDisplayDelay: null,
+        appBarQss: null
     },
     modelListeners: {
       "*": {

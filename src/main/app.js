@@ -178,7 +178,8 @@ fluid.defaults("gpii.app", {
                 model: {
                     "scaleFactor": "{qssWrapper}.model.scaleFactor",
                     "closeQssOnClickOutside": "{qssWrapper}.model.closeQssOnBlur",
-                    "tooltipDisplayDelay": "{qssWrapper}.qssTooltip.model.showDelay"
+                    "tooltipDisplayDelay": "{qssWrapper}.qssTooltip.model.showDelay",
+                    "appBarQss": "{app}.model.preferences.appBarQss"
                 }
             }
         },
