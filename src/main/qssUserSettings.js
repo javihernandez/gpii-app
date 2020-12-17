@@ -20,8 +20,8 @@ var gpii = fluid.registerNamespace("gpii");
 
 /**
  * @module qssUserSettings
- * Responsible for creation and housekeeping of the connection to the websockets
- * settingsHandler.
+ * Keeps a model of the user-configurable settings and is the central point
+ * from where the settings are propagated through the different components.
  */
 fluid.defaults("gpii.app.qssUserSettings", {
     gradeNames: ["fluid.modelComponent"],
