@@ -23,6 +23,7 @@ require("./dialogs/quickSetStrip/qssTooltipDialog.js");
 require("./dialogs/quickSetStrip/qssWidgetDialog.js");
 require("./dialogs/quickSetStrip/qssNotificationDialog.js");
 require("./common/undoStack.js");
+require("../shared/utils.js");
 
 /**
  * A component which coordinates the operation of all QSS related components
@@ -108,7 +109,11 @@ fluid.defaults("gpii.app.qssWrapper", {
         closeQssOnBlur: false,
         appBarQss: false,
         disableRestartWarning: false,
-        alwaysUseChrome: "{that}.options.siteConfig.alwaysUseChrome"
+        alwaysUseChrome: "{that}.options.siteConfig.alwaysUseChrome",
+        buttonLists: {
+            buttonList: "{that}.options.siteConfig.buttonList",
+            morePanelList: "{that}.options.siteConfig.morePanelList"
+        }
     },
 
     events: {
@@ -180,7 +185,21 @@ fluid.defaults("gpii.app.qssWrapper", {
                 args: ["{change}.value"],
                 excludeSource: ["init"]
             }
-        ]
+        ],
+
+        buttonLists: [{
+            funcName: "gpii.app.qssWrapper.buttonListsUpdated",
+            args: [
+                "{that}",
+                "{change}.transaction.oldHolder.lifecycleStatus",
+                "{assetsManager}",
+                "{systemLanguageListener}.model.installedLanguages",
+                "{messageBundles}.model.locale",
+                "{messageBundles}.model.messages"
+            ],
+            excludeSource: "init",
+            includeSource: "settingsHandler.update"
+        }]
     },
 
     invokers: {
@@ -762,6 +781,35 @@ gpii.app.qssWrapper.loadSettings = function (assetsManager, installedLanguages, 
 
     return mergeSettings;
 };
+
+/**
+ * Update qssWrapper settings according to the changes made on buttonList and
+ * morePanelList as the result of a user key-in/out
+ * @param {Component} that - The `gpii.app.qssWrapper` instance.
+ */
+gpii.app.qssWrapper.buttonListsUpdated = function (that, componentStatus, assetsManager, installedLanguages, locale, messageBundles) {
+    // We skip any updates to the model if the lifecycleStatus is constructing
+    if (componentStatus === "constructing") return;
+
+    var updates = {
+        buttonList: that.model.buttonLists.buttonList,
+        morePanelList: that.model.buttonLists.morePanelList
+    }
+
+    var newSettings = gpii.app.qssWrapper.loadSettings(
+        assetsManager, installedLanguages, locale, messageBundles,
+        that.options.settingOptions, that.options.settingsFixturePath, updates);
+
+    gpii.app.applier.replace(that.applier, "settings", newSettings, "buttonLists.updated");
+
+    that.qss.options.config.params.settings = that.model.settings;
+    that.qss.dialog.reload();
+
+    var scaleFactor = that.model.scaleFactor;
+    that.applier.change("scaleFactor", scaleFactor + 0.1);
+    that.applier.change("scaleFactor", scaleFactor);
+};
+
 
 /**
  * Find a QSS setting by its path.

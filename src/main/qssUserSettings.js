@@ -26,23 +26,16 @@ var gpii = fluid.registerNamespace("gpii");
 fluid.defaults("gpii.app.qssUserSettings", {
     gradeNames: ["fluid.modelComponent"],
     model: {
-        scaleFactor: null,
-        closeQssOnClickOutside: null,
-        tooltipDisplayDelay: null,
-        alwaysUseChrome: null,
-        appBarQss: null,
-        disableRestartWarning: null,
-        openQssShortcut: null
-    },
-    modelListeners: {
-      "*": {
-          funcName: "gpii.app.qssUserSettings.modelChanged",
-          args: ["{that}", "{change}"],
-          excludeSource: "init"
-      }
+        settings: {
+            scaleFactor: null,
+            closeQssOnClickOutside: null,
+            tooltipDisplayDelay: null,
+            alwaysUseChrome: null,
+            appBarQss: null,
+            disableRestartWarning: null,
+            openQssShortcut: null,
+            buttonList: null,
+            morePanelList: null
+        }
     }
 });
-
-gpii.app.qssUserSettings.modelChanged = function (that, change) {
-    console.log("# qssUserSettings model changed: ", change);
-};

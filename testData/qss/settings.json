@@ -332,13 +332,6 @@
         "tabindex": 225,
         "messageKey": "common-colorVision",
         "value": 0,
-        "styles": {
-            "regular-contrast": {
-                "background": "#ffffff",
-                "color": "#0073bd",
-                "border-color": "#0073bd"
-            }
-        },
         "learnMoreLink": "https://morphic.world/help/qsshelp#color-vision"
     }, {
         "id": "separator",

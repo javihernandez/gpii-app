@@ -169,20 +169,24 @@ fluid.defaults("gpii.app", {
             type: "gpii.app.qssUserSettings",
             createOnEvent: "onQSSDialogReady",
             options: {
-                listeners: {
-                    "onCreate.sayHello": {
-                        funcName: "console.log",
-                        args: ["# qssUserSettings was successfully created! model: ", "{qssUserSettings}.model"]
+                model: {
+                    settings: {
+                        scaleFactor: "{qssWrapper}.model.scaleFactor",
+                        closeQssOnClickOutside: "{qssWrapper}.model.closeQssOnBlur",
+                        tooltipDisplayDelay: "{qssWrapper}.qssTooltip.model.showDelay",
+                        alwaysUseChrome: "{qssWrapper}.model.alwaysUseChrome",
+                        buttonList: "{qssWrapper}.model.buttonLists.buttonList",
+                        morePanelList: "{qssWrapper}.model.buttonLists.morePanelList",
+                        appBarQss: "{app}.model.preferences.appBarQss",
+                        disableRestartWarning: "{app}.model.preferences.disableRestartWarning",
+                        openQssShortcut: "{app}.model.preferences.gpiiAppShortcut"
                     }
                 },
-                model: {
-                    "scaleFactor": "{qssWrapper}.model.scaleFactor",
-                    "closeQssOnClickOutside": "{qssWrapper}.model.closeQssOnBlur",
-                    "tooltipDisplayDelay": "{qssWrapper}.qssTooltip.model.showDelay",
-                    "alwaysUseChrome": "{qssWrapper}.model.alwaysUseChrome",
-                    "appBarQss": "{app}.model.preferences.appBarQss",
-                    "disableRestartWarning": "{app}.model.preferences.disableRestartWarning",
-                    "openQssShortcut": "{app}.model.preferences.gpiiAppShortcut"
+                listeners: {
+                    "{gpii.app}.events.newSettingsArrived": {
+                        func: "{that}.applier.change",
+                        args: ["settings", "{arguments}.0"]
+                    }
                 }
             }
         },
@@ -190,8 +194,18 @@ fluid.defaults("gpii.app", {
             type: "gpii.app.settingsHandlerConnector",
             createOnEvent: "onQSSDialogReady",
             options: {
-                model: {
-                    "settings": "{qssUserSettings}.model"
+                events: {
+                    newSettingsArrived: "{gpii.app}.events.newSettingsArrived"
+                },
+                modelListeners: {
+                    "{qssUserSettings}.model.settings": {
+                        funcName: "gpii.app.settingsHandlerConnector.qssUserSettingsChanged",
+                        args: [
+                            "{settingsHandlerConnector}",
+                            "{change}"
+                        ],
+                        includeSource: "init"
+                    }
                 }
             }
         },
@@ -429,7 +443,9 @@ fluid.defaults("gpii.app", {
         onKeyedIn: null,
         onKeyedOut: null,
 
-        onBlur: null
+        onBlur: null,
+
+        newSettingsArrived: null
     },
     listeners: {
         "onCreate.appReady": {

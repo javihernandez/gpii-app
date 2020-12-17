@@ -30,6 +30,9 @@ fluid.defaults("gpii.app.settingsHandlerConnector", {
         settings: null,
         settingsSnapshot: null
     },
+    events: {
+        newSettingsArrived: null
+    },
     listeners: {
         "onCreate.connect": "{that}.connect",
         "onConnected.setup": {
@@ -37,13 +40,6 @@ fluid.defaults("gpii.app.settingsHandlerConnector", {
             priority: "after:connect"
         },
         "onMessageReceived.handleRawChannelMessage": "{that}.handleRawChannelMessage"
-    },
-    modelListeners: {
-        "settings": {
-            funcName: "gpii.app.settingsHandlerConnector.modelChanged",
-            args: ["{that}", "{change}"],
-            excludeSource: "init"
-        }
     },
     invokers: {
         handleRawChannelMessage: {
@@ -75,15 +71,19 @@ gpii.app.settingsHandlerConnector.handleRawChannelMessage = function (that, mess
     // The settings have changed and core is telling us about it
     } else if (message.type === "onSettingsChanged") {
         console.log("# The settings have been updated to: ", message.payload);
-        // The user has keyed-in and we need to create a snapshot and apply
-        // the incoming settings
-        if (message.payload) {
-            that.applier.change("settingsSnapshot", that.model.settings);
-            that.applier.change("settings", message.payload);
-        // The user has keyed out and we need to restore the snapshot
-        } else {
-            that.applier.change("settings", that.model.settingsSnapshot);
-            that.applier.change("settingsSnapshot", message.payload);
+        var equal = fluid.model.diff(message.payload, that.model.settings);
+        if (!equal) {
+            // The user has keyed-in and we need to create a snapshot and apply
+            // the incoming settings
+            if (message.payload) {
+                that.applier.change("settingsSnapshot", that.model.settings);
+                that.applier.change("settings", message.payload, null, "settingsHandler.update");
+            // The user has keyed out and we need to restore the snapshot
+            } else {
+                that.applier.change("settings", that.model.settingsSnapshot, null, "settingsHandler.update");
+                that.applier.change("settingsSnapshot", message.payload);
+            }
+            that.events.newSettingsArrived.fire(that.model.settings);
         }
     } else {
         console.log("# unhandled message");
@@ -95,6 +95,6 @@ gpii.app.settingsHandlerConnector.setup = function (that, solutionId) {
     that.send({ type: "connect", payload: {solutionId: solutionId }});
 };
 
-gpii.app.settingsHandlerConnector.modelChanged = function (that, change) {
-    console.log("## settingsHandlerConnector model changed: ", change);
+gpii.app.settingsHandlerConnector.qssUserSettingsChanged = function (that, change) {
+    that.applier.change("settings", change.value, null, "settingsHandler.init");
 };
