@@ -802,12 +802,17 @@ gpii.app.qssWrapper.buttonListsUpdated = function (that, componentStatus, assets
 
     gpii.app.applier.replace(that.applier, "settings", newSettings, "buttonLists.updated");
 
+    // TODO: Find a different way to achieve the propagation of these
     that.qss.options.config.params.settings = that.model.settings;
+    that.qss.options.config.params.siteConfig.alwaysUseChrome = that.model.alwaysUseChrome;
     that.qss.dialog.reload();
 
+    // Final tweaks after the reload
+    // Re-scale to force redrawing of the buttons - calling fitToScreen didn't work
     var scaleFactor = that.model.scaleFactor;
     that.applier.change("scaleFactor", scaleFactor + 0.1);
     that.applier.change("scaleFactor", scaleFactor);
+    // TODO: Find a way to restart the appBarQss behavior
 };
 
 
