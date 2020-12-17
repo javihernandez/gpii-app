@@ -60,17 +60,14 @@ fluid.defaults("gpii.app.settingsHandlerConnector", {
  * @param {Object} message - The received PSP Channel message
  */
 gpii.app.settingsHandlerConnector.handleRawChannelMessage = function (that, message) {
-    console.log("# Received message", JSON.stringify(message));
-
     // Connection to the websockets settingsHandler was succeeded
     if (message.type === "connectionSucceeded") {
-        console.log("# connectionSucceeded");
-    // Core has received current Morphic settings
+        fluid.log("settingsHandlerConnector - Established connection with the GPII");
+    // Core has received current Morphic settings - not in use right now
     } else if (message.type === "changeSettingsReceived") {
-        console.log("# core received current Morphic settings");
+        fluid.log("settingsHandlerConnector - core received current Morphic settings");
     // The settings have changed and core is telling us about it
     } else if (message.type === "onSettingsChanged") {
-        console.log("# The settings have been updated to: ", message.payload);
         var equal = fluid.model.diff(message.payload, that.model.settings);
         if (!equal) {
             // The user has keyed-in and we need to create a snapshot and apply
@@ -86,12 +83,12 @@ gpii.app.settingsHandlerConnector.handleRawChannelMessage = function (that, mess
             that.events.newSettingsArrived.fire(that.model.settings);
         }
     } else {
-        console.log("# unhandled message");
+        fluid.log("settingsHandlerConnector - Received unhandled message: ", message);
     }
 };
 
 gpii.app.settingsHandlerConnector.setup = function (that, solutionId) {
-    console.log("# Connected - setting up ", solutionId);
+    fluid.log("settingsHandlerConnector - Connected, identifying as", solutionId);
     that.send({ type: "connect", payload: {solutionId: solutionId }});
 };
 
