@@ -1013,8 +1013,10 @@ gpii.app.qssWrapper.updateLanguageSettingOptions = function (that, locale, insta
  * @param {Component} qssWidget - The `gpii.app.qssWidget` instance.
  * @param {Object} updatedSetting - The new setting.
  */
-gpii.app.qssWidget.updateIfMatching = function (qssWidget, updatedSetting) {
-    if (qssWidget.model.setting.path === updatedSetting.path) {
+gpii.app.qssWidget.updateIfMatching = function (qssWidget, updatedSetting, change) {
+    // Do nothing if there's no updatedSetting. This is useful when there was an
+    // update to the lists of buttons that the quickstrip displays.
+    if (updatedSetting && (qssWidget.model.setting.path === updatedSetting.path)) {
         qssWidget.events.onSettingUpdated.fire(updatedSetting);
     }
 };
