@@ -165,5 +165,26 @@
             "Blue-Yellow (Tritanomaly)"
         ],
         "sidecarWithSettings": "<p>In addition to the Windows color vision options presented in the panel to the left, there are also several grayscale options provided in Windows setting.</p><p>Here is the link to take you directly to the full set of Color Vision Options in Windows Settings:</p><ul><li><a href='ms-settings:easeofaccess-colorfilter'>Color Vision Settings</a></li></ul>"
+    },
+    "gpii_app_qss_settings_morphic-userSettings": {
+        "tooltip": "<p>Change the Morphic QuickStrip user settings</p>",
+        "title": "Morphic User Settings",
+        "tip": "<p>Morphic User Settings</p><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>",
+        "sidecar": "<h2>Title to be described</h2><p>Text to be described</p><p>Note that you can provide <b>HTML <i>Markup</i></b> here. Look at <i>messageBundles/gpii-app-qss-settings_en.json</i> to see some examples of the <i>sidecar</i> or <i>sidecarWithSettings</i> blocks."
+    },
+    "gpii_app_qss_settings_morphic-alwaysUseChrome": {
+        "title": "Always open links on Google Chrome"
+    },
+    "gpii_app_qss_settings_morphic-appBarQss": {
+        "title": "QuickStrip as application bar"
+    },
+    "gpii_app_qss_settings_morphic-closeQssOnClickOutside": {
+        "title": "Hide on click outside"
+    },
+    "gpii_app_qss_settings_morphic-disableRestartWarning": {
+        "title": "Do not notify me when an application needs to restart"
+    },
+    "gpii_app_qss_settings_morphic-tooltipDisplayDelay": {
+        "title": "Tooltip show delay"
     }
 }

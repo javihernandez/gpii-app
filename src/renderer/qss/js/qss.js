@@ -62,6 +62,7 @@
             "launch-documorph":  "gpii.qss.launchDocuMorphPresenter",
             "volume":            "gpii.qss.volumeButtonPresenter",
             "mouse":             "gpii.qss.widgetButtonPresenter",
+            "morphic":           "gpii.qss.widgetButtonPresenter",
             "snipping-tool":     "gpii.qss.snippingToolPresenter",
             "disabled":          "gpii.qss.disabledButtonPresenter",
             // custom button grades

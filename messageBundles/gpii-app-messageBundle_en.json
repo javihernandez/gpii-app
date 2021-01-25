@@ -54,6 +54,11 @@
     "gpii_qssWidget_mouse_upperBoundError": "This is fastest speed",
     "gpii_qssWidget_mouse_lowerBoundError": "This is slowest speed",
 
+    "gpii_qssWidget_morphic_incrementButton": "Slower",
+    "gpii_qssWidget_morphic_decrementButton": "Faster",
+    "gpii_qssWidget_morphic_upperBoundError": "You reached the lowest tooltip display delay",
+    "gpii_qssWidget_morphic_lowerBoundError": "You reached the fastest tooltip display delay",
+
     "gpii_qssWidget_openUSB_noUsbInserted": "There are no USB drives plugged into the computer. Insert your USB and try again.",
     "gpii_qssWidget_openUSB_ejectUsbDrives": "There are no USB drives active in the computer. It is safe to remove any drive in the computer",
     "gpii_qssWidget_openUSB_openUsbButtonLabel": "Open all USB drives",
