@@ -390,7 +390,7 @@
                     "max": 3000,
                     "divisibleBy": 500
                 },
-                "value": 0.5,
+                "value": 500,
                 "messageKey": "morphic-tooltipDisplayDelay"
             }
         },
