@@ -54,10 +54,17 @@
     "gpii_qssWidget_mouse_upperBoundError": "This is fastest speed",
     "gpii_qssWidget_mouse_lowerBoundError": "This is slowest speed",
 
-    "gpii_qssWidget_morphic_incrementButton": "Slower",
-    "gpii_qssWidget_morphic_decrementButton": "Faster",
-    "gpii_qssWidget_morphic_upperBoundError": "You reached the lowest tooltip display delay",
-    "gpii_qssWidget_morphic_lowerBoundError": "You reached the fastest tooltip display delay",
+    "gpii_qssWidget_morphicWidgetTooltipDisplayDelay_settingTitle": "Tooltip show delay (Range is between 0.5 and 3 seconds)",
+    "gpii_qssWidget_morphicWidgetTooltipDisplayDelay_incrementButton": "Slower",
+    "gpii_qssWidget_morphicWidgetTooltipDisplayDelay_decrementButton": "Faster",
+    "gpii_qssWidget_morphicWidgetTooltipDisplayDelay_upperBoundError": "You reached the lowest tooltip display delay",
+    "gpii_qssWidget_morphicWidgetTooltipDisplayDelay_lowerBoundError": "You reached the fastest tooltip display delay",
+
+    "gpii_qssWidget_morphicWidgetScaleFactor_settingTitle": "QuickStrip Scale Factor",
+    "gpii_qssWidget_morphicWidgetScaleFactor_incrementButton": "Larger",
+    "gpii_qssWidget_morphicWidgetScaleFactor_decrementButton": "Smaller",
+    "gpii_qssWidget_morphicWidgetScaleFactor_upperBoundError": "This is the highest value",
+    "gpii_qssWidget_morphicWidgetScaleFactor_lowerBoundError": "This is the lowest value",
 
     "gpii_qssWidget_openUSB_noUsbInserted": "There are no USB drives plugged into the computer. Insert your USB and try again.",
     "gpii_qssWidget_openUSB_ejectUsbDrives": "There are no USB drives active in the computer. It is safe to remove any drive in the computer",

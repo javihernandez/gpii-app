@@ -28,7 +28,9 @@
             closeQssOnClickOutside: ".flc-qssMorphicWidget-closeQssOnClickOutside",
             disableRestartWarning: ".flc-qssMorphicWidget-disableRestartWarning",
             tooltipDisplayDelay: ".flc-qssMorphicWidget-tooltipDisplayDelay",
-            indicators: ".flc-qssTooltipDisplayDelayStepperWidget-indicators"
+            tooltipDisplayDelayIndicators: ".flc-qssTooltipDisplayDelayStepperWidget-indicators",
+            scaleFactor: ".flc-qssMorphicWidget-scaleFactor",
+            scaleFactorIndicators: ".flc-qssScaleFactorStepperWidget-indicators"
         },
 
         events: {
@@ -67,6 +69,12 @@
                     },
                     tooltipDisplayDelay: {
                         value: 500,
+                        schema: {
+                            title: null
+                        }
+                    },
+                    scaleFactor: {
+                        value: 1.2,
                         schema: {
                             title: null
                         }
@@ -117,12 +125,12 @@
                 }
             },
             tooltipDisplayDelay: {
-                type: "gpii.qssWidget.baseStepper",
+                type: "gpii.qssWidget.morphicWidgetTooltipDisplayDelay",
                 container: "{that}.dom.tooltipDisplayDelay",
                 options: {
                     sounds: {},
                     model: {
-                        messages: "{morphic}.model.messages",
+                        messages: "{tooltipDisplayDelay}.model.messages",
                         setting: "{morphic}.model.setting.settings.tooltipDisplayDelay",
                         value: "{morphic}.model.setting.settings.tooltipDisplayDelay.value"
                     },
@@ -132,10 +140,36 @@
                     components: {
                         indicators: {
                             type: "gpii.qssWidget.baseStepper.indicators",
-                            container: "{morphic}.dom.indicators",
+                            container: "{morphic}.dom.tooltipDisplayDelayIndicators",
                             options: {
                                 model: {
                                     setting: "{tooltipDisplayDelay}.model.setting"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            scaleFactor: {
+                type: "gpii.qssWidget.morphicWidgetScaleFactor",
+                container: "{that}.dom.scaleFactor",
+                options: {
+                    sounds: {},
+                    model: {
+                        messages: "{scaleFactor}.model.messages",
+                        setting: "{morphic}.model.setting.settings.scaleFactor",
+                        value: "{morphic}.model.setting.settings.scaleFactor.value"
+                    },
+                    events: {
+                        onNotificationRequired: "{morphic}.events.onQssWidgetNotificationRequired"
+                    },
+                    components: {
+                        indicators: {
+                            type: "gpii.qssWidget.baseStepper.indicators",
+                            container: "{morphic}.dom.scaleFactorIndicators",
+                            options: {
+                                model: {
+                                    setting: "{scaleFactor}.model.setting"
                                 }
                             }
                         }
@@ -155,6 +189,22 @@
                 }
             }
         }
+    });
+
+
+    /**
+     * Holder component for the QSS Morphic Tooltip Display Delay setting.
+     */
+    fluid.defaults("gpii.qssWidget.morphicWidgetTooltipDisplayDelay", {
+        gradeNames: "gpii.qssWidget.baseStepper"
+    });
+
+
+    /**
+     * Holder component for the QSS Morphic Scale Factor setting.
+     */
+    fluid.defaults("gpii.qssWidget.morphicWidgetScaleFactor", {
+        gradeNames: "gpii.qssWidget.baseStepper"
     });
 
     /**
