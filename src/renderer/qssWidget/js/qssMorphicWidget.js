@@ -23,6 +23,7 @@
         gradeNames: ["fluid.viewComponent", "gpii.psp.selectorsTextRenderer"],
 
         selectors: {
+            // QuickStrip Settings
             alwaysUseChrome: ".flc-qssMorphicWidget-alwaysUseChrome",
             appBarQss: ".flc-qssMorphicWidget-appBarQss",
             closeQssOnClickOutside: ".flc-qssMorphicWidget-closeQssOnClickOutside",
@@ -30,12 +31,16 @@
             tooltipDisplayDelay: ".flc-qssMorphicWidget-tooltipDisplayDelay",
             tooltipDisplayDelayIndicators: ".flc-qssTooltipDisplayDelayStepperWidget-indicators",
             scaleFactor: ".flc-qssMorphicWidget-scaleFactor",
-            scaleFactorIndicators: ".flc-qssScaleFactorStepperWidget-indicators"
+            scaleFactorIndicators: ".flc-qssScaleFactorStepperWidget-indicators",
+            // External interface
+            footerTip: ".flc-qssMorphicWidget-footerTip",
+            openEditorButton: ".flc-qssMorphicWidget-openEditorButton"
         },
 
         events: {
             onQssWidgetNotificationRequired: null,
-            onQssWidgetSettingAltered: null
+            onQssWidgetSettingAltered: null,
+            onQssOpenEditorRequested: null
         },
 
         enableRichText: true,
@@ -83,6 +88,7 @@
             },
             messages: {
                 // something i18n
+                footerTip: "{that}.model.setting.widget.footerTip"
             }
         },
 
@@ -176,6 +182,24 @@
                     }
                 }
             },
+            openEditorButton: {
+                type: "gpii.psp.widgets.button",
+                container: "{that}.dom.openEditorButton",
+                options: {
+                    model: {
+                        label: "{morphic}.model.messages.openEditorButtonLabel"
+                    },
+                    listeners: {
+                        onClick: {
+                            funcName: "gpii.qssWidget.morphic.openEditorActivated",
+                            args: [
+                                "{morphic}",
+                                "{channelNotifier}.events.onQssOpenEditorRequested"
+                            ]
+                        }
+                    }
+                }
+            },
             channelNotifier: {
                 type: "gpii.psp.channelNotifier",
                 options: {
@@ -183,6 +207,7 @@
                         // Add events the main process to be notified for
                         onQssWidgetSettingAltered:       "{morphic}.events.onQssWidgetSettingAltered",
                         onQssWidgetNotificationRequired: "{morphic}.events.onQssWidgetNotificationRequired",
+                        onQssOpenEditorRequested:        "{morphic}.events.onQssOpenEditorRequested",
                         onMetric: null,
                         onMetricState: null
                     }
@@ -191,6 +216,15 @@
         }
     });
 
+    /**
+     * Fire onQssOpenEditorRequested when the openEditorButton is pressed.
+     * @param {Component} morphic - The `gpii.qssWidget.morphic` instance
+     * @param {fluid.event} openEditorEvent - the onQssOpenEditorRequested event
+     */
+    gpii.qssWidget.morphic.openEditorActivated = function (morphic, openEditorEvent) {
+        // fires the event that open the editor
+        openEditorEvent.fire();
+    };
 
     /**
      * Holder component for the QSS Morphic Tooltip Display Delay setting.
