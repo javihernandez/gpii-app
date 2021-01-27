@@ -25,6 +25,7 @@ require("./common/utils.js");
 require("./common/ws.js");
 require("./dialogs/dialogManager.js");
 require("./dialogs/captureToolDialog.js");
+require("./dialogs/morphicSettingsEditor.js");
 require("./storage.js");
 require("./factsManager.js");
 require("./gpiiConnector.js");
@@ -310,6 +311,10 @@ fluid.defaults("gpii.app", {
                 }
             }
         },
+        morphicSettingsEditor: {
+            type: "gpii.app.morphicSettingsEditor",
+            createOnEvent: "onOpenMorphicEditor"
+        },
         diagnosticsCollector: {
             type: "gpii.app.diagnosticsCollector",
             createOnEvent: "onPSPPrerequisitesReady"
@@ -439,6 +444,7 @@ fluid.defaults("gpii.app", {
         onPSPReady: null,
 
         onOpenCaptureTool: null,
+        onOpenMorphicEditor: null,
 
         onKeyedIn: null,
         onKeyedOut: null,
