@@ -25,6 +25,10 @@ var gpii = fluid.registerNamespace("gpii");
  */
 fluid.defaults("gpii.app.morphicSettingsEditor", {
     gradeNames: ["gpii.app.dialog", "gpii.app.centeredDialog"],
+
+    buttonList: null,
+    morePanelList: null,
+
     config: {
         fileSuffixPath: "morphicSettingsEditor/index.html",
         attrs: {
@@ -39,6 +43,10 @@ fluid.defaults("gpii.app.morphicSettingsEditor", {
             maximizable: true,
             autoHideMenuBar: true,
             titleBarStyle: "default",
+        },
+        params: {
+            buttonList: "{that}.options.buttonList",
+            morePanelList: "{that}.options.morePanelList"
         }
     },
     listeners: {
@@ -54,6 +62,6 @@ fluid.defaults("gpii.app.morphicSettingsEditor", {
 
 gpii.app.morphicSettingsEditor.debug = function (that) {
     that.dialog.webContents.once("dom-ready", function () {
-        console.log("#### it worked");
+        console.log("#### it worked ");
     })
 };
