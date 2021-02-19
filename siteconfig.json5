@@ -251,5 +251,12 @@
     },
 
     // Metrics switch (read by the service): "<morphic>:<metrics>"
-    metricsSwitch: "on:off" // (eg, "on:on"=both on (default), "off:on"=metrics only)
+    metricsSwitch: "on:off", // (eg, "on:on"=both on (default), "off:on"=metrics only)
+
+    installOnDemand: {
+        packageSources: "https://iod-server.iod-test.net/iod/",
+        trustedKeys: {
+            "stegru": "e9kdOkqRw9qQyWJyoR/cx/0IPsIYKo445sY1WgTl2XY="
+        }
+    }
 }
