@@ -254,9 +254,9 @@
     metricsSwitch: "on:off", // (eg, "on:on"=both on (default), "off:on"=metrics only)
 
     installOnDemand: {
-        packageSources: "https://iod-server.iod-test.net/iod/",
+        packageSources: "https://iod.smartwork.gpii.net",
         trustedKeys: {
-            "stegru": "e9kdOkqRw9qQyWJyoR/cx/0IPsIYKo445sY1WgTl2XY="
+            "iodSmartwork": "MsSOamAlcXVCZMAd8zE0JIw2WAmLSKhtG49ZbX+Qt4Y="
         }
     }
 }
