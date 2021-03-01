@@ -1,0 +1,58 @@
+<html>
+
+    <head>
+        <title>Smartwork Login</title>
+        <link rel="stylesheet" href="../../../node_modules/winstrap/dist/css/winstrap.min.css">
+        <link rel="stylesheet" href="../common/css/button.css">
+        <link rel="stylesheet" href="../common/css/dialog.css">
+        <link rel="stylesheet" href="../common/css/titlebar.css">
+
+        <script type="text/javascript" src="../../../node_modules/infusion/src/lib/jquery/core/js/jquery.js"></script>
+        <script type="text/javascript" src="../../../node_modules/infusion/dist/infusion-all.js"></script>
+
+        <script type="text/javascript" src="../../shared/channelUtils.js"></script>
+        <script type="text/javascript" src="../common/js/channelUtils.js"></script>
+
+        <script type="text/javascript" src="../common/js/widgets.js"></script>
+        <script type="text/javascript" src="../common/js/titlebar.js"></script>
+
+        <script type="text/javascript" src="../../../node_modules/gpii-binder/src/js/binder.js"></script>
+
+        <script type="text/javascript" src="js/smartworkLogin.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <script type="text/javascript" src="../common/js/utils.js"></script>
+        <script type="text/javascript" src="../common/js/channelUtils.js"></script>
+    </head>
+
+    <body>
+        <div class="fl-dialog">
+            <div>
+
+                    <div>
+                        <span>Username:</span>
+                        <input type="text" class="flc-username" placeholder="johndoe@smartwork.eu" value="" />
+                    </div>
+                    <div>
+                        <span>Password:</span>
+                        <input type="password" class="flc-password" placeholder="my password" value="" />
+                    </div>
+                    <div>
+                        <input type="submit" class="flc-submitBtn" value="Login" />
+                    </div>
+                    <div class="progress-ring progress-medium">
+                        <div class="progress-circle"></div>
+                        <div class="progress-circle"></div>
+                        <div class="progress-circle"></div>
+                        <div class="progress-circle"></div>
+                        <div class="progress-circle"></div>
+                    </div>
+                    <div>
+                        <span class="flc-feedbackLabel alert"></span>
+                    </div>
+
+            </div>
+        </div>
+    </body>
+
+</html>

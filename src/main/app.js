@@ -25,6 +25,7 @@ require("./common/utils.js");
 require("./common/ws.js");
 require("./dialogs/dialogManager.js");
 require("./dialogs/captureToolDialog.js");
+require("./dialogs/smartworkLoginDialog.js");
 require("./storage.js");
 require("./factsManager.js");
 require("./gpiiConnector.js");
@@ -33,6 +34,7 @@ require("./qss.js");
 require("./settingsBroker.js");
 require("./shortcutsManager.js");
 require("./siteConfigurationHandler.js");
+require("./smartworkLoginManager.js");
 require("./surveys/surveyManager.js");
 require("./storage.js");
 require("./tray.js");
@@ -264,6 +266,45 @@ fluid.defaults("gpii.app", {
                 }
             }
         },
+        smartworkLoginDialog: {
+            type: "gpii.app.smartworkLoginDialog",
+            createOnEvent: "openSmartworkLoginDialog",
+            //createOnEvent: "onPSPPrerequisitesReady"
+            options: {
+                listeners: {
+                    "onSmartworkCredentialsArrived.logIntoSmartwork": {
+                        func: "{smartworkLoginManager}.logIntoSmartwork",
+                        args: "{arguments}.0"
+                    },
+                    "{smartworkLoginManager}.events.onLoginSucceeded": {
+                        func: "{smartworkLoginDialog}.channelNotifier.events.onLoginSucceeded.fire"
+                    },
+                    "{smartworkLoginManager}.events.onLoginFailed": {
+                        func: "{smartworkLoginDialog}.channelNotifier.events.onLoginFailed.fire"
+                    }
+                }
+            }
+        },
+        smartworkLoginManager: {
+            type: "gpii.app.smartworkLoginManager",
+            createOnEvent: "onPSPReadyForKeyIn",
+            options: {
+                listeners: {
+                    "onNoCredentialsFound.openLoginDialog": {
+                        func: "{app}.events.openSmartworkLoginDialog.fire"
+                    },
+                    "onCredentialsFound.keyUserIn": {
+                        func: "{app}.keyIn",
+                        args: "{smartworkLoginManager}.model.gpiiKey"
+                    },
+                    "onLoginSucceeded.keyUserIn": {
+                        func: "{app}.keyIn",
+                        args: "{smartworkLoginManager}.model.gpiiKey",
+                        priority: "after:generateGpiiKey"
+                    }
+                }
+            }
+        },
         diagnosticsCollector: {
             type: "gpii.app.diagnosticsCollector",
             createOnEvent: "onPSPPrerequisitesReady"
@@ -393,6 +434,7 @@ fluid.defaults("gpii.app", {
         onPSPReady: null,
 
         onOpenCaptureTool: null,
+        openSmartworkLoginDialog: null,
 
         onKeyedIn: null,
         onKeyedOut: null,
