@@ -3,7 +3,7 @@
  *
  * This component is responsible for keying the smartwork users into Morphic.
  *
- * Since the Smartwork credentials need to be used by different applications and
+ * The Smartwork credentials need to be used by different applications and
  * services running on the computer, we use the OS keyring to store/retrieve
  * such credentials.
  *
@@ -59,29 +59,9 @@ fluid.defaults("gpii.app.smartworkLoginManager", {
                 "{that}.events.onNoCredentialsFound"
             ]
         },
-        "onNoCredentialsFound.askForCredentials": {
-            funcName: "console.log",
-            args: "## askForCredentials needs to be implemented"
-        },
-        "onCredentialsFound.keyInUser": {
-            funcName: "console.log",
-            args: "## keyInUser needs to be implemented"
-        },
-        "onLoginSucceeded.debug": {
-            funcName: "console.log",
-            args: ["## onLoginSucceeded: ", "{arguments}.0"]
-        },
         "onLoginSucceeded.saveIntoKeyring": {
             func: "{keyring}.setPassword",
             args: ["{arguments}.0.username", "{arguments}.0.password"]
-        },
-        "onLoginSucceeded.generateGpiiKey": {
-            func: "{that}.generateGpiiKey",
-            args: ["{arguments}.0.username", "{arguments}.0.password"]
-        },
-        "onLoginFailed.debug": {
-            funcName: "console.log",
-            args: ["## onLoginFailed: ", "{arguments}.0"]
         }
     },
     invokers: {
@@ -99,7 +79,6 @@ fluid.defaults("gpii.app.smartworkLoginManager", {
 gpii.app.smartworkLoginManager.checkCredentials = function (that, keyring, credentialsFound, noCredentialsFound) {
     var credentials = keyring.findCredentials();
     credentials.then(function (result) {
-        console.log("## result: ", result);
         if (!result) {
             // Couldn't find credentials, ask the user for credentials through morphic
             noCredentialsFound.fire();
@@ -125,11 +104,12 @@ gpii.app.smartworkLoginManager.logIntoSmartwork = function (that, credentials, o
 
     var req = https.request(options, function (res) {
         res.on("data", function (data) {
-            console.log("#### data: ", data.toString());
             var resolution = JSON.parse(data.toString());
 
-            console.log("#### resolution: ", resolution);
             if (resolution.result === "ok") {
+                that.applier.change("username", credentials.username);
+                that.applier.change("password", credentials.password);
+                that.generateGpiiKey();
                 onLoginSucceeded.fire(credentials);
             } else {
                 onLoginFailed.fire();
@@ -138,7 +118,7 @@ gpii.app.smartworkLoginManager.logIntoSmartwork = function (that, credentials, o
     });
 
     req.on("error", function (error) {
-        console.log("There was an error while trying to authenticate, error was: ", error);
+        fluid.log("There was an error while trying to authenticate, error was: ", error);
     });
 
     req.end()
@@ -147,7 +127,6 @@ gpii.app.smartworkLoginManager.logIntoSmartwork = function (that, credentials, o
 gpii.app.smartworkLoginManager.generateGpiiKey = function (that) {
     var gpiiKey = getUuid("".concat(that.model.username, that.model.password));
     that.applier.change("gpiiKey", gpiiKey);
-    console.log("#### gpiiKey: ", gpiiKey);
     return gpiiKey;
 };
 
@@ -197,7 +176,6 @@ gpii.keyring.findCredentials = function (service) {
 };
 
 gpii.keyring.setPassword = function (service, account, password) {
-    console.log("## setPassword: ", service, account, password);
     var promise = fluid.promise();
 
     keytar.setPassword(service, account, password).then(function () {

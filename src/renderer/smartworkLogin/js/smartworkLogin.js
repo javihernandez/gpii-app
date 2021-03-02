@@ -25,8 +25,16 @@
         gradeNames: ["fluid.viewComponent", "gpii.binder.bindOnCreate"],
 
         model: {
-            username: null,
-            password: null
+            credentials: {
+                username: null,
+                password: null
+            },
+
+            // Transaltable strings
+            messages: {
+                loginSuccess: "Login succeeded",
+                loginFail: "Invalid Credentials"
+            }
         },
 
         selectors: {
@@ -39,8 +47,13 @@
 
         bindings: {
             // selector  :  model
-            usernameInput: "username",
-            passwordInput: "password"
+            usernameInput: "credentials.username",
+            passwordInput: "credentials.password"
+        },
+
+        styles: {
+            loginSuccess: "alert-success",
+            loginFailed: "alert-danger"
         },
 
         events: {
@@ -48,16 +61,21 @@
         },
 
         invokers: {
-            // TODO
+            // TODO: i18n
             showSuccessLabel: {
                 this: "{that}.dom.feedbackLabel",
                 method: "text",
-                args: "Login succeeded"
+                args: "{that}.model.messages.loginSuccess"
             },
             showFailureLabel: {
                 this: "{that}.dom.feedbackLabel",
                 method: "text",
-                args: "Invalid credentials"
+                args: "{that}.model.messages.loginFail"
+            },
+            toggleProgressRing: {
+                this: "{smartworkLogin}.dom.progressRing",
+                method: "toggle",
+                args: ["slow"]
             }
         },
 
@@ -70,8 +88,9 @@
                         onLoginFailed: null
                     },
                     listeners: {
+                        // TODO: Refactor these listeners in a decent way
                         onLoginSucceeded: [{
-                            func: "{smartworkLogin}.showSuccessLabel"
+                            func: "{smartworkLogin}.toggleProgressRing"
                         }, {
                             this: "{smartworkLogin}.dom.feedbackLabel",
                             method: "removeClass",
@@ -81,12 +100,10 @@
                             method: "addClass",
                             args: "alert-success"
                         }, {
-                            this: "{smartworkLogin}.dom.progressRing",
-                            method: "hide",
-                            args: ["slow"]
+                            func: "{smartworkLogin}.showSuccessLabel"
                         }],
                         onLoginFailed: [{
-                            func: "{smartworkLogin}.showFailureLabel"
+                            func: "{smartworkLogin}.toggleProgressRing"
                         }, {
                             this: "{smartworkLogin}.dom.feedbackLabel",
                             method: "removeClass",
@@ -96,9 +113,7 @@
                             method: "addClass",
                             args: "alert-danger"
                         }, {
-                            this: "{smartworkLogin}.dom.progressRing",
-                            method: "hide",
-                            args: ["slow"]
+                            func: "{smartworkLogin}.showFailureLabel"
                         }]
                     }
                 }
@@ -113,50 +128,28 @@
             }
         },
 
-        modelListeners: {
-            "username": {
-                funcName: "console.log",
-                args: ["username changed!", "{change}.value"]
-            },
-            "password": {
-                funcName: "console.log",
-                args: ["password changed!", "{change}.value"]
-            }
-        },
-
         listeners: {
-            "onCreate.announce": {
-                funcName: "console.log",
-                args: "smartworkLogin dialog ready!"
-            },
             "onCreate.addClickHandler": {
                 "this": "{that}.dom.submitButton",
                 method: "click",
                 args: ["{that}.events.onClick.fire"]
             },
-            "onCreate.toggleProgressRing": {
+            "onCreate.hideProgressRing": {
                 this: "{that}.dom.progressRing",
                 method: "hide"
             },
-            "onClick.sayClick": {
-                funcName: "console.log",
-                args: ["submit button clicked, user credentials: ", "{that}.model"]
-            },
             "onClick.notifiyMainProcess": {
                 funcName: "{that}.channelNotifier.events.onSmartworkCredentialsInput.fire",
-                args: ["{that}.model"]
+                args: ["{that}.model.credentials"]
             },
             "onClick.clearFeedbackLabel": {
                 this: "{that}.dom.feedbackLabel",
                 method: "empty"
             },
             "onClick.toggleProgressRing": {
-                this: "{that}.dom.progressRing",
-                method: "show",
-                args: ["slow"]
+                func: "{smartworkLogin}.toggleProgressRing"
             }
         }
-
     });
 
 })(fluid);

@@ -2,7 +2,7 @@
  * Smartwork login BrowserWindow Dialog
  *
  * Introduces a component that uses an Electron BrowserWindow to represent an "About" dialog.
- * Copyright 2020 RtF-I
+ * Copyright 2021 RtF-I
  *
  * Licensed under the New BSD license. You may not use this file except in
  * compliance with this License.
@@ -74,16 +74,6 @@ fluid.defaults("gpii.app.smartworkLoginDialog", {
     listeners: {
         "onCreate.show": {
             func: "{that}.show"
-        },
-        "onCreate.debug": {
-            funcName: "gpii.app.smartworkLoginDialog.debug",
-            args: "{that}"
         }
     }
 });
-
-gpii.app.smartworkLoginDialog.debug = function (that) {
-    that.dialog.webContents.once("dom-ready", function () {
-        console.log("#### it worked");
-    })
-};

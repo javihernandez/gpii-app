@@ -299,8 +299,7 @@ fluid.defaults("gpii.app", {
                     },
                     "onLoginSucceeded.keyUserIn": {
                         func: "{app}.keyIn",
-                        args: "{smartworkLoginManager}.model.gpiiKey",
-                        priority: "after:generateGpiiKey"
+                        args: "{smartworkLoginManager}.model.gpiiKey"
                     }
                 }
             }
