@@ -29,7 +29,7 @@ fluid.defaults("gpii.app.smartworkLoginDialog", {
         fileSuffixPath: "smartworkLogin/index.html",
         attrs: {
             width: 600,
-            height: 400,
+            height: 500,
             alwaysOnTop: true,
             frame: true,
             resizable: true,

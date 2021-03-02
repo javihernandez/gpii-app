@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="../common/css/button.css">
         <link rel="stylesheet" href="../common/css/dialog.css">
         <link rel="stylesheet" href="../common/css/titlebar.css">
+        <link rel="stylesheet" href="../smartworkLogin/css/main.css">
 
         <script type="text/javascript" src="../../../node_modules/infusion/src/lib/jquery/core/js/jquery.js"></script>
         <script type="text/javascript" src="../../../node_modules/infusion/dist/infusion-all.js"></script>
@@ -26,23 +27,23 @@
     </head>
 
     <body>
-        <div class="fl-dialog">
+        <div class="fl-dialog centered-container">
             <div>
                 <div>
-                    <img src="../../assets/smartworkLogoColor.png">
+                    <img src="../../assets/smartworkLogoColor.png" class="img-fluid" style="max-width: 75%" alt="Smartwork Logo">
                 </div>
-                <div>
+                <div class="form-group">
                     <span>Username:</span>
-                    <input type="text" class="flc-username" placeholder="johndoe@smartwork.eu" value="" />
+                    <input type="text" class="flc-username form-control" placeholder="johndoe@smartwork.eu" value="" />
                 </div>
-                <div>
+                <div class="form-group">
                     <span>Password:</span>
-                    <input type="password" class="flc-password" placeholder="my password" value="" />
+                    <input type="password" class="flc-password form-control" placeholder="my password" value="" />
                 </div>
-                <div>
-                    <input type="submit" class="flc-submitBtn" value="Login" />
+                <div class="form-group">
+                    <input type="submit" class="flc-submitBtn btn" value="Login" />
                 </div>
-                <div class="progress-ring progress-medium">
+                <div class="progress-ring progress-medium" alt="Login is in progress">
                     <div class="progress-circle"></div>
                     <div class="progress-circle"></div>
                     <div class="progress-circle"></div>
