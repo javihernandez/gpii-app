@@ -37,7 +37,6 @@ fluid.defaults("gpii.app.smartworkLoginDialog", {
             movable: true,
             minimizable: true,
             maximizable: true,
-            autoHideMenuBar: true,
             titleBarStyle: "default"
         }
     },
@@ -74,6 +73,14 @@ fluid.defaults("gpii.app.smartworkLoginDialog", {
     listeners: {
         "onCreate.show": {
             func: "{that}.show"
+        },
+        "onCreate.removeMenu": {
+            funcName: "gpii.app.smartworkLoginDialog.removeWindowMenu",
+            args: "{that}"
         }
     }
 });
+
+gpii.app.smartworkLoginDialog.removeWindowMenu = function (that) {
+    that.dialog.removeMenu();
+};
