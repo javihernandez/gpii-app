@@ -289,17 +289,27 @@ fluid.defaults("gpii.app", {
             type: "gpii.app.smartworkLoginManager",
             createOnEvent: "onPSPReadyForKeyIn",
             options: {
+                loginInfo: {
+                    isEnvironmentalLogin: true
+                },
                 listeners: {
                     "onNoCredentialsFound.openLoginDialog": {
                         func: "{app}.events.openSmartworkLoginDialog.fire"
                     },
                     "onCredentialsFound.keyUserIn": {
                         func: "{app}.keyIn",
-                        args: "{smartworkLoginManager}.model.gpiiKey"
+                        args: [
+                            "{smartworkLoginManager}.model.gpiiKey",
+                            "{smartworkLoginManager}.options.loginInfo"
+                        ]
                     },
                     "onLoginSucceeded.keyUserIn": {
                         func: "{app}.keyIn",
-                        args: "{smartworkLoginManager}.model.gpiiKey"
+                        args: [
+                            "{smartworkLoginManager}.model.gpiiKey",
+                            "{smartworkLoginManager}.options.loginInfo"
+                        ]
+
                     }
                 }
             }
@@ -498,7 +508,7 @@ fluid.defaults("gpii.app", {
         },
         keyIn: {
             funcName: "gpii.app.keyIn",
-            args: ["{lifecycleManager}", "{arguments}.0"] // token
+            args: ["{lifecycleManager}", "{arguments}.0", "{arguments}.1"] // token, loginInfo
         },
         keyOut: {
             funcName: "gpii.app.keyOut",
@@ -643,10 +653,11 @@ gpii.app.fireAppReady = function (fireFn) {
   * Keys a user into the GPII.
   * @param {Component} lifecycleManager - The `gpii.lifecycleManager` instance.
   * @param {String} token - The token to key in with.
+  * @param {Object} loginInfo - Additional loginInfo such as isEnvironmentalLogin.
   * @return {Promise} A promise that will be resolved/rejected when the request is finished.
   */
-gpii.app.keyIn = function (lifecycleManager, token) {
-    return lifecycleManager.performLogin(token);
+gpii.app.keyIn = function (lifecycleManager, token, loginInfo) {
+    return lifecycleManager.performLogin(token, loginInfo);
 };
 
 /**
